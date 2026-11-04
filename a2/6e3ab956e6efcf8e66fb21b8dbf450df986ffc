@@ -1,0 +1,27 @@
+wiki/decisions/0002-migrate-legacy-plugin-path-activate-only.md
+  s_a7851cd69798b0::t_15b911cf9006f2 6-7,10-11,16-17
+wiki/decisions/0003-plugin-name-cooper-bold-logo-wrangler.md
+  s_a7851cd69798b0::t_f64cc6b790f6e3 4,7-9,15,37,39,45
+wiki/decisions/0008-remove-old-product-names.md
+  s_a7851cd69798b0::t_9d8b3db1350b0d 1-47
+wiki/entities/gutenberg-block-balanced-logos.md
+  s_a7851cd69798b0::t_d85e38652f8911 4,6-7,11,20-21,30
+wiki/entities/wordpress-plugin.md
+  s_a7851cd69798b0::t_c0575ba2c841e9 6-7,11,22,32,37,43-44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a26e3ab956e6efcf8e66fb21b8dbf450df986ffc",
+  "prompts": {},
+  "sessions": {
+    "s_a7851cd69798b0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d986e716-db6f-4b81-a1c0-15e92df826a3",
+        "model": "unknown"
+      },
+      "human_author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    }
+  }
+}
