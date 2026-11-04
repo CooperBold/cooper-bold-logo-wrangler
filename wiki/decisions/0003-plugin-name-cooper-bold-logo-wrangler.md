@@ -1,18 +1,18 @@
 ---
 title: Plugin name — Cooper Bold Logo Wrangler
 type: decision
-summary: Why the plugin went Logo Soup → Balanced Logos → Cooper Bold Logo Wrangler, and which old identifiers are still kept on purpose.
+summary: Why the plugin went Logo Soup → Balanced Logos → Cooper Bold Logo Wrangler, and which old identifiers were kept on purpose (most removed in 1.4.0).
 status: active
 created: 2026-10-19
-updated: 2026-10-19
-last_verified: 2026-10-19
-sources: ["commits 0f37da5, 980383c, 70052c0, 60aab65, aed0e5b", "WP.org review email thread 2026-06-26 → 2026-08-03", "https://app.notion.com/p/37afb6901a688069a9ebef05fe326252", readme.txt]
+updated: 2026-11-03
+last_verified: 2026-11-03
+sources: ["commits 0f37da5, 980383c, 70052c0, 60aab65, aed0e5b, 3b97d49, a5bc12b", "WP.org review email thread 2026-06-26 → 2026-08-03", "https://app.notion.com/p/37afb6901a688069a9ebef05fe326252", readme.txt]
 tags: [naming, wordpress-org, legacy]
 ---
 
 # Plugin name: Cooper Bold Logo Wrangler
 
-**Status:** active. The display name is **Cooper Bold Logo Wrangler** and the requested WP.org slug is `cooper-bold-logo-wrangler` (1.3.0, commit `aed0e5b`, 2026-08-17). The GitHub repo slug is still `cooper-bold-logo-soup`.
+**Status:** active. The display name is **Cooper Bold Logo Wrangler** and the requested WP.org slug is `cooper-bold-logo-wrangler` (1.3.0, commit `aed0e5b`, 2026-08-17). The GitHub repo slug was renamed to `cooper-bold-logo-wrangler` on 2026-10-30 (commit `3b97d49`, old URL redirects).
 
 ## Timeline (from the `Plugin Name` header at each commit)
 
@@ -34,12 +34,12 @@ tags: [naming, wordpress-org, legacy]
 
 Balanced/Partner/Harmonized Logo Strip by Cooper Bold (Notion, 2026-07-01); Balanced Logos (rejected); Cooper Bold Logo Strip Normalizer (AI suggestion, not used).
 
-## Consequences: what is kept on purpose
+## Consequences: what was kept on purpose
 
-- Shortcodes `[balanced_logos]`, `[logo_soup]`, `[cooper-bold-logo-soup]`; blocks `cooper-bold/balanced-logos` and `cooper-bold/logo-soup` (hidden from the inserter since 1.3.3); CPT `cb_logo_collection`; legacy meta keys; legacy CSS classes and data attributes, all so existing content keeps rendering. Source: `readme.txt` 1.3.0 changelog.
+- Shortcodes `[balanced_logos]`, `[logo_soup]`, `[cooper-bold-logo-soup]`; blocks `cooper-bold/balanced-logos` and `cooper-bold/logo-soup` (hidden from the inserter since 1.3.3); CPT `cb_logo_collection`; legacy meta keys; legacy CSS classes and data attributes, all so existing content keeps rendering. Source: `readme.txt` 1.3.0 changelog. **Most of this list was removed in 1.4.0** (commit `a5bc12b`): the legacy shortcodes/blocks, `balanced-logos.php` loader, all `active_plugins` writes, and the duplicate `cb-balanced-logos-*` CSS/data classes are gone — see [[0008-remove-old-product-names]].
 - `balanced-logos.php`, a loader with no header, for sites that activated 1.2.15. There is **no** loader for `cooper-bold-logo-soup.php`; see [[rapidsos-site]].
 - Each rename was a repo-wide find/replace, which also rewrote history. For example, the `readme.txt` 1.1.3 changelog now says the name became "Cooper Bold Logo Wrangler", but it was "Logo Soup". `docs/WORDPRESS-ORG-SUBMISSION.md` says the name was "chosen 2026-07-06", but that was the Balanced Logos date. Check old names with `git show`.
 
 ## Related
 
-- [[0002-migrate-legacy-plugin-path-activate-only]] · [[wordpress-plugin]] · [[wordpress-org-submission]]
+- [[0002-migrate-legacy-plugin-path-activate-only]] · [[0008-remove-old-product-names]] · [[wordpress-plugin]] · [[wordpress-org-submission]]

@@ -3,15 +3,17 @@ title: Migrate legacy plugin path on activate/update only
 type: decision
 summary: Rewrite the legacy balanced-logos.php active_plugins entry only on activate/update (never on plugins_loaded); deactivate removes both paths.
 created: 2026-08-30
-updated: 2026-10-19
-last_verified: 2026-10-19
+updated: 2026-11-03
+last_verified: 2026-11-03
 tags: [wordpress-org, bootstrap, migration, compliance]
 aliases: [activate-only-migration, legacy-path-migration]
-sources: [cooper-bold-logo-wrangler.php, balanced-logos.php, tests/CB_LW_Bootstrap_Test.php, "commit 385fbad", AI_SESSION_MEMORY.md]
-status: active
+sources: [cooper-bold-logo-wrangler.php, balanced-logos.php, tests/COOPBOLO_Bootstrap_Test.php, "commit 385fbad", "commit a5bc12b", AI_SESSION_MEMORY.md]
+status: superseded
 ---
 
 # Migrate the legacy `balanced-logos.php` entry on activate/update only
+
+**Superseded by [[0008-remove-old-product-names]] (1.4.0, commit `a5bc12b`).** As of 1.4.0 the legacy loader `balanced-logos.php` and every `active_plugins` read, migrate helper, upgrader hook, and deactivate cleanup listed below are gone — the plugin no longer touches the `active_plugins` option at all. This page is kept as history of why the activate/update-only pattern existed (WP.org compliance) before the whole legacy path was deleted.
 
 ## Context
 
