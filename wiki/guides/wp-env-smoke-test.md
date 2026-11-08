@@ -3,11 +3,11 @@ title: wp-env smoke test (Cooper Bold Logo Wrangler)
 type: guide
 summary: Local Docker (wp-env + Colima) smoke test: build, activate, render a shortcode, check assets and the release ZIP.
 created: 2026-06-17
-updated: 2026-10-19
-last_verified: 2026-10-19
+updated: 2026-11-08
+last_verified: 2026-11-08
 tags: [wordpress, wp-env, docker, colima, smoke-test, ci]
 aliases: [smoke-test, wp-env-smoke]
-sources: [docs/SMOKE-TEST.md, .wp-env.json, AI_RUNBOOK.md, .distignore]
+sources: [docs/SMOKE-TEST.md, .wp-env.json, AI_RUNBOOK.md, .distignore, "commits a5bc12b, 096d507, 1f7112d"]
 status: active
 ---
 
@@ -61,8 +61,8 @@ WP-CLI slug is `cooper-bold-logo-wrangler-wp-plugin` (from directory name). Remo
 
 ```bash
 composer install
-vendor/bin/phpunit      # PHPUnit — 49 tests on 1.3.5 (2026-10-22); was 13 in June
-npm test                # Jest — 19 tests in 3 suites (2026-10-22); was 11 in June
+vendor/bin/phpunit      # PHPUnit — 62 tests on 1.4.0 (2026-11-08); was 49 on 1.3.5, 13 in June
+npm test                # Jest — 19 tests in 3 suites (2026-11-08); was 11 in June
 npm run verify          # .verify.sh gate: Jest + build
 npm run lint:js
 ```

@@ -3,11 +3,11 @@ title: RapidSOS deploy (Cooper Bold Logo Wrangler)
 type: guide
 summary: Build the ZIP, install on RapidSOS Cloudways staging, wire collections into Bricks (strip or carousel), purge caches, roll back.
 created: 2026-06-17
-updated: 2026-10-22
-last_verified: 2026-10-22
+updated: 2026-11-08
+last_verified: 2026-11-08
 tags: [wordpress, deploy, cloudways, bricks, shortcode]
 aliases: [rapidsos-deploy]
-sources: [docs/RAPIDSOS-DEPLOY.md, includes/class-coopbolo-renderer.php]
+sources: [docs/RAPIDSOS-DEPLOY.md, includes/class-coopbolo-renderer.php, "commit a5bc12b"]
 status: active
 ---
 
@@ -81,7 +81,7 @@ The Bricks builder iframe often does **not** run `view.js`, so the strip shows *
 
 ## Legacy inline logos (shortcode one-offs)
 
-Inline `logos="url|alt,..."` shortcodes still work for one-offs, but collections are preferred. Legacy shortcode aliases `[balanced_logos]`, `[logo_soup]`, `[cooper-bold-logo-soup]` remain functional.
+Inline `logos="url|alt,..."` shortcodes still work for one-offs, but collections are preferred. The legacy aliases `[balanced_logos]`, `[logo_soup]`, and `[cooper-bold-logo-soup]` **were removed in 1.4.0** — only `[logo_wrangler]` registers now, so any content still using an old tag renders nothing. See [[0008-remove-old-product-names]].
 
 ## Verify after deploy
 

@@ -3,11 +3,11 @@ title: Submit to WordPress.org Plugin Directory
 type: guide
 summary: Maintainer steps to get the plugin into the WP.org directory: ZIP, review, SVN secrets, tag deploy, directory assets.
 created: 2026-06-14
-updated: 2026-10-19
-last_verified: 2026-10-19
+updated: 2026-11-08
+last_verified: 2026-11-08
 tags: [wordpress, release, deploy, svn, github-actions]
 aliases: [wp-org-submit, release-plugin]
-sources: [docs/WORDPRESS-ORG-SUBMISSION.md, README.md, .github/workflows/deploy.yml, readme.txt]
+sources: [docs/WORDPRESS-ORG-SUBMISSION.md, README.md, .github/workflows/deploy.yml, readme.txt, "commits a5bc12b, 3b97d49"]
 status: active
 ---
 
@@ -44,9 +44,7 @@ The ZIP is written to `dist/cooper-bold-logo-wrangler-<version>.zip`. It respect
 
 > **Pre-approval:** the first submission is reviewed manually. Plugin Check (step 7) and escaping/sanitization in this repo are aligned with common review feedback, but approval is not guaranteed until a human reviewer accepts the plugin.
 >
-> **Status as of 2026-10-19:** unchanged. No newer WP.org email in the inbox; full timeline in [[wporg-review-thread]].
->
-> **Status as of 2026-08-24 session (unchanged as of 2026-09-01 — no new commits; daily gardener confirmed review still pending):** v1.3.2 is **in manual review** (uploaded, automated scan passed, Tested up to 7.1); v1.3.3 (activate/update-only legacy migration + deactivation cleanup + hidden legacy blocks — [[0002-migrate-legacy-plugin-path-activate-only]]) is built and verified (43 PHPUnit, 16 Jest) but **not uploaded**, queued until 1.3.2 clears.
+> **Status as of 2026-11-08:** **1.3.7** is the last upload (2026-10-29), waiting on the automated recheck; `main` is at **1.4.0**, built and verified but **not uploaded**. 1.4.0 removes the old product names, the legacy loader, and every `active_plugins` write ([[0008-remove-old-product-names]]). Nicholas uploads and replies in the existing thread; full timeline in [[wporg-review-thread]].
 
 ## 4. Add GitHub secrets for automated deploy **(you)**
 
@@ -102,6 +100,7 @@ This repo follows WordPress coding practices: `ABSPATH` guards, escaping, saniti
 - Update `Stable tag` and changelog in `readme.txt` for each release.
 - Bump `Version` in `cooper-bold-logo-wrangler.php`, `COOPBOLO_VERSION`, and `src/block/block.json` (`version`); run `npm run build`; then tag `v*`.
 - Monitor the plugin support forum (`https://wordpress.org/support/plugin/cooper-bold-logo-wrangler/`, assuming the requested slug is granted) once live. The docs still link the rejected `balanced-logos` slug.
+- Before uploading a version that drops an alias, make sure the `readme.txt` **Upgrade Notice** tells users what to change. 1.4.0 does: content using `[logo_soup]` or `[balanced_logos]` must move to `[logo_wrangler]`.
 
 ## What cannot be automated
 

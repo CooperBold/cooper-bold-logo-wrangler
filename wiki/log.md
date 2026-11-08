@@ -4,8 +4,8 @@ type: overview
 summary: Append-only history of wiki changes. Older entries are not strictly date-ordered.
 status: active
 created: 2026-06-12
-updated: 2026-10-20
-last_verified: 2026-10-20
+updated: 2026-11-08
+last_verified: 2026-11-08
 sources: []
 tags: [meta]
 ---
@@ -175,3 +175,21 @@ Branch `fix/remove-legacy-aliases` (on top of `fix/js-hook-prefix`) removes the 
 ## [2026-10-30] ops | GitHub repo renamed
 
 `CooperBold/cooper-bold-logo-soup` → `CooperBold/cooper-bold-logo-wrangler` (Nicholas asked; done with `gh repo rename`). GitHub redirects the old URL, local `origin` remotes were repointed, and the repo URL in the plugin header, readme and docs updates on branch `chore/repo-rename`. WP.org's reviewers were given the old URL; it still redirects. The new URL reaches WP.org only with the next uploaded version.
+
+## [2026-11-08] update | 1.4.0 and 1.3.6/1.3.7 reconciled across the wiki
+
+The 24-hour window was empty (newest commit `a26e3ab`, 2026-11-04), but the wiki had drifted from `main` since the 2026-10-20 gardener run. This entry also corrects the two 2026-10-29/30 entries above: **`fix/js-hook-prefix` (`9501c8d`) and `fix/remove-legacy-aliases` (`a5bc12b`) are both merged into `main`** — they were written as branches and later landed by fast-forward, so "branch, not merged" is now history. `main` is at **1.4.0**.
+
+Everything below was verified against the code on `main`, not inferred:
+
+- **1.4.0** (`a5bc12b`): only `[logo_wrangler]` and only `cooper-bold/logo-wrangler` remain; `balanced-logos.php` and every `active_plugins` read/write are gone; the duplicate `cb-balanced-logos-*` classes and `data-cb-balanced-logos-*` attributes are gone; the `_cb_balanced_logos_*` / `_cb_logo_soup_*` meta fallbacks are gone (only `_cb_lw_*` remains). The `readme.txt` 1.4.0 upgrade notice tells users to move content to `[logo_wrangler]`. Guard tests: `test_old_product_names_are_not_registered_or_emitted` and `test_plugin_never_rewrites_active_plugins`.
+- **1.3.6** (`096d507`): `str_contains()` → `strpos()` in the Auto Scroll duplicate check, because the plugin declares `Requires PHP: 7.4` and WordPress does not polyfill PHP 8 functions. A guard test fails if a PHP 8-only function returns.
+- **1.3.7** (`1f7112d`): Auto Scroll loads once. `external_autoscroll_handle()` finds another handle by `src`; `reconcile_autoscroll()` settles it on `wp_print_footer_scripts`, because block themes render content before `wp_enqueue_scripts`.
+- **WP.org:** 1.3.7 was uploaded 2026-10-29 and is waiting on the automated recheck. 1.4.0 is built and verified but **not uploaded**. 1.3.7 carries the `coopbolo_` prefix, so it answers the Aug 26 prefix finding.
+- **Counts:** PHPUnit is 62 tests (175 assertions), Jest 19 tests in 3 suites — both re-run on 2026-11-08. The 1.4.0 ZIP top level is `LICENSE admin build cooper-bold-logo-wrangler.php includes lib package-lock.json package.json readme.txt src`; no `balanced-logos.php`.
+
+**Pages updated:** [[index]] (Must-know now says 1.3.7 is the last upload and 1.4.0 is on `main`; added the missing [[0008-remove-old-product-names]] entry), [[gotchas]] (removed the now-contradictory "don't remove legacy shortcodes" rule, added the never-touch-`active_plugins` rule, the PHP 7.4 and Auto Scroll traps, and corrected the 1.3.4/1.3.5 status and the ZIP top-level list), [[overview]] (release state 1.3.2/1.3.3 → 1.4.0/1.3.7; surfaces now list only the one block and one shortcode), [[logo-collections]] (legacy meta fallbacks are `_cb_lw_*` only), [[rapidsos-site]] and [[rapidsos-deploy]] (legacy shortcodes removed in 1.4.0), [[0007-coopbolo-prefix]] (status: merged and shipped in 1.3.7, no longer "not uploaded"), [[0002-migrate-legacy-plugin-path-activate-only]] (test filename corrected), [[wporg-review-thread]] (timeline through 2026-10-30), [[rendering-pipeline]] and [[carousel-and-splide]] (legacy classes/events removed; new Auto Scroll and PHP 7.4 sections), [[wordpress-org-submission]] (status block), [[wp-env-smoke-test]] (test counts), [[SCHEMA]] (CPT is `coopbolo_collection`).
+
+Also finished the three items the 2026-11-03 gardener run left open (they were never committed): the `_cb_balanced_logos_*` / `_cb_logo_soup_*` fallback lines in [[logo-collections]], the "not uploaded yet" status on [[0007-coopbolo-prefix]], and the missing [[0008-remove-old-product-names]] line in [[index]].
+
+Note for the next run: two repo files are still stale and were left alone (this job only touches `wiki/`). `AI_RUNBOOK.md` lists the three legacy shortcodes, says the plugin is version 1.2.15, and pins logo-soup `^1.2.2` instead of `1.3.0`. `src/block/index.js` still has a header comment saying it registers "plus legacy block names still present in existing content", but it now registers only `cooper-bold/logo-wrangler`.

@@ -4,8 +4,8 @@ type: overview
 summary: How to write in this wiki. Read before editing any page.
 status: active
 created: 2026-06-12
-updated: 2026-10-19
-last_verified: 2026-10-19
+updated: 2026-11-08
+last_verified: 2026-11-08
 sources: [~/.claude/skills/closeout/wiki-template/SCHEMA.md]
 tags: [meta]
 ---
@@ -73,7 +73,7 @@ Then `# Title`, a 1–3 sentence summary, the content, and `## Related` with `[[
 
 ## Project notes
 
-- **Product:** Cooper Bold Logo Wrangler, a free WordPress plugin (block `cooper-bold/logo-wrangler`, shortcode `[logo_wrangler]`, CPT `cb_logo_collection`) that wraps `@sanity-labs/logo-soup`. Cooper Bold's own product; RapidSOS was the first site to use it.
+- **Product:** Cooper Bold Logo Wrangler, a free WordPress plugin (block `cooper-bold/logo-wrangler`, shortcode `[logo_wrangler]`, CPT `coopbolo_collection`) that wraps `@sanity-labs/logo-soup`. Cooper Bold's own product; RapidSOS was the first site to use it.
 - **Names changed four times** (see [[0003-plugin-name-cooper-bold-logo-wrangler]]). Each rename was a global find/replace that also rewrote older docs and changelog lines, so old docs can show today's name for past events. For history, trust `git show <commit>:<file>` over prose.
 - **Where truth lives:** code first, then `readme.txt` (WP.org readme + changelog), `AGENTS.md` (agent rules), `docs/*.md` (runbooks; the wiki guides mirror them and fix stale bits), `AI_SESSION_MEMORY.md` (session journal). WP.org review status lives in the Cooper Bold inbox thread, not in the repo.
 - **Public:** the GitHub repo is public and linked from `readme.txt`. Write as if anyone can read it: no emails, rates, or client-internal notes.

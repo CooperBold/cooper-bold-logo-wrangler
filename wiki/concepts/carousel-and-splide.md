@@ -4,9 +4,9 @@ type: concept
 summary: How layout="carousel" works with Bricks Nested Sliders, the RapidSOS autoscroll snippet, and the bundled Splide.
 status: active
 created: 2026-10-19
-updated: 2026-10-19
-last_verified: 2026-10-19
-sources: [includes/class-coopbolo-renderer.php, includes/class-coopbolo-assets.php, src/view.js, readme.txt, lib/splide/README.md, docs/RAPIDSOS-DEPLOY.md, "commits b65550b, 2ebd174"]
+updated: 2026-11-08
+last_verified: 2026-11-08
+sources: [includes/class-coopbolo-renderer.php, includes/class-coopbolo-assets.php, src/view.js, readme.txt, lib/splide/README.md, docs/RAPIDSOS-DEPLOY.md, "commits b65550b, 2ebd174, 096d507, 1f7112d"]
 tags: [carousel, splide, bricks, rapidsos]
 ---
 
@@ -38,6 +38,16 @@ Slides carry `logo-slider-slide` because RapidSOS's footer snippet `rapidsos-log
 Bricks registers a `splide` script handle **with no src** on every page. Enqueuing that handle loads nothing. `COOPBOLO_Assets::resolve_splide_script_handle()` uses `splide` only if it has a src, and otherwise uses the plugin's own handles, `cooper-bold-logo-wrangler-splide` (+ `-autoscroll`), which point at `lib/splide/` (1.2.4 changelog; `class-coopbolo-assets.php` ~lines 149–210).
 
 Splide is **vendored** in `lib/splide/` (core 4.1.4, auto-scroll 0.5.3). 1.2.11 and older loaded it from jsDelivr. WP.org rules out external CDN scripts, so 1.2.12 vendored it. The auto-scroll pin is explained in [[0001-pin-splide-extension-auto-scroll]].
+
+## Auto Scroll loads only once (1.3.7)
+
+If a theme or another plugin already loads the Auto Scroll extension, the plugin must not ship a second copy. `COOPBOLO_Assets::external_autoscroll_handle()` finds another registered handle **by `src`** (a theme can register the same file under any handle) and explicitly skips the plugin's own handle, whose src contains the same file name. When one is found, the plugin enqueues that handle instead of the bundled one and points `view.js` at it.
+
+Because block themes render content before `wp_enqueue_scripts`, a theme that enqueues Auto Scroll late is not visible when the carousel renders. `reconcile_autoscroll()` settles it on `wp_print_footer_scripts` (priority 1): it dequeues the bundled copy and swaps the view script's dependency to the external handle. Commit `1f7112d`.
+
+## PHP 7.4 compatibility (1.3.6)
+
+The plugin declares `Requires PHP: 7.4`, and WordPress does not polyfill PHP 8 functions. The Auto Scroll duplicate check was `page_already_loads_autoscroll_extension()`, which used `str_contains()`; 1.3.6 changed it to `strpos()`, and 1.3.7 replaced the method with `external_autoscroll_handle()`. A guard test fails if a PHP 8-only string or array function is added to the plugin code. Commit `096d507`.
 
 ## Fail-open
 

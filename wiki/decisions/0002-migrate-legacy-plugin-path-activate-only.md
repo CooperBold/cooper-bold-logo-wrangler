@@ -3,8 +3,8 @@ title: Migrate legacy plugin path on activate/update only
 type: decision
 summary: Rewrite the legacy balanced-logos.php active_plugins entry only on activate/update (never on plugins_loaded); deactivate removes both paths.
 created: 2026-08-30
-updated: 2026-11-03
-last_verified: 2026-11-03
+updated: 2026-11-08
+last_verified: 2026-11-08
 tags: [wordpress-org, bootstrap, migration, compliance]
 aliases: [activate-only-migration, legacy-path-migration]
 sources: [cooper-bold-logo-wrangler.php, balanced-logos.php, tests/COOPBOLO_Bootstrap_Test.php, "commit 385fbad", "commit a5bc12b", AI_SESSION_MEMORY.md]
@@ -29,7 +29,7 @@ Migrate the legacy `active_plugins` entry **only on user-initiated plugin lifecy
 2. **Plugin update** — `cb_lw_maybe_migrate_after_upgrade()` on `upgrader_process_complete` (args 10, 2) migrates when `$options['action'] === 'update'`, `$options['type'] === 'plugin'`, and the updated plugin is the canonical or legacy basename.
 3. **Deactivation** — new `cb_lw_deactivate()` removes **both** the canonical and legacy basenames from `active_plugins` so the plugin fully stops.
 
-The migration itself dedupes: it skips entries already migrated (and drops the legacy entry even when the canonical one already exists), so repeated runs are idempotent. The legacy path is computed by the new `cb_lw_legacy_bootstrap_basename()` helper (`plugin_basename(CB_LW_PATH . 'balanced-logos.php')`) instead of reading a `CB_LW_BOOTSTRAP_FILE` constant. The `plugins_loaded` hook is never used for this — enforced by string-level assertions in `tests/CB_LW_Bootstrap_Test.php`.
+The migration itself dedupes: it skips entries already migrated (and drops the legacy entry even when the canonical one already exists), so repeated runs are idempotent. The legacy path is computed by the new `cb_lw_legacy_bootstrap_basename()` helper (`plugin_basename(CB_LW_PATH . 'balanced-logos.php')`) instead of reading a `CB_LW_BOOTSTRAP_FILE` constant. The `plugins_loaded` hook is never used for this — enforced by string-level assertions in `tests/COOPBOLO_Bootstrap_Test.php`.
 
 ## Consequences
 

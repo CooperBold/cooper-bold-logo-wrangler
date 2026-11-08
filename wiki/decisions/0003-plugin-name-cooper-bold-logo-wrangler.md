@@ -37,7 +37,7 @@ Balanced/Partner/Harmonized Logo Strip by Cooper Bold (Notion, 2026-07-01); Bala
 ## Consequences: what was kept on purpose
 
 - Shortcodes `[balanced_logos]`, `[logo_soup]`, `[cooper-bold-logo-soup]`; blocks `cooper-bold/balanced-logos` and `cooper-bold/logo-soup` (hidden from the inserter since 1.3.3); CPT `cb_logo_collection`; legacy meta keys; legacy CSS classes and data attributes, all so existing content keeps rendering. Source: `readme.txt` 1.3.0 changelog. **Most of this list was removed in 1.4.0** (commit `a5bc12b`): the legacy shortcodes/blocks, `balanced-logos.php` loader, all `active_plugins` writes, and the duplicate `cb-balanced-logos-*` CSS/data classes are gone — see [[0008-remove-old-product-names]].
-- `balanced-logos.php`, a loader with no header, for sites that activated 1.2.15. There is **no** loader for `cooper-bold-logo-soup.php`; see [[rapidsos-site]].
+- `balanced-logos.php`, a loader with no header, for sites that activated 1.2.15. There is **no** loader for `cooper-bold-logo-soup.php`; see [[rapidsos-site]]. The loader itself was **deleted in 1.4.0** — see [[0008-remove-old-product-names]].
 - Each rename was a repo-wide find/replace, which also rewrote history. For example, the `readme.txt` 1.1.3 changelog now says the name became "Cooper Bold Logo Wrangler", but it was "Logo Soup". `docs/WORDPRESS-ORG-SUBMISSION.md` says the name was "chosen 2026-07-06", but that was the Balanced Logos date. Check old names with `git show`.
 
 ## Related

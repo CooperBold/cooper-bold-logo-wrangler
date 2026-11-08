@@ -4,9 +4,9 @@ type: entity
 summary: The reusable logo-set custom post type, its meta keys (with legacy fallbacks), REST route, and admin UI.
 status: active
 created: 2026-10-19
-updated: 2026-10-22
-last_verified: 2026-10-22
-sources: [includes/class-coopbolo-collections.php, readme.txt, "commit ee4d016", "RapidSOS repo deploy/wordpress/logo-soup/README.md"]
+updated: 2026-11-08
+last_verified: 2026-11-08
+sources: [includes/class-coopbolo-collections.php, readme.txt, "commit ee4d016", "commit a5bc12b", "RapidSOS repo deploy/wordpress/logo-soup/README.md"]
 tags: [cpt, admin, collections, rest]
 ---
 
@@ -21,7 +21,7 @@ Logo Collections are the main way editors use the plugin, especially on page bui
 | Post type | `coopbolo_collection` since 1.3.5; `cb_logo_collection` from 1.1.0 to 1.3.4 | `COOPBOLO_Collections::POST_TYPE`, `LEGACY_POST_TYPE` |
 | Logos meta | `_coopbolo_logos`: ordered array of `{id, url, alt, link}` | `META_LOGOS` |
 | Settings meta | `_coopbolo_settings`: baseSize, gap, layout, etc. | `META_SETTINGS` |
-| Legacy meta, read only as fallback | `_cb_lw_*`, then `_cb_balanced_logos_*`, then `_cb_logo_soup_*` | `META_*_LEGACY_KEYS`, `get_meta_array()` |
+| Legacy meta, read only as fallback | `_cb_lw_*` only — the older `_cb_balanced_logos_*` and `_cb_logo_soup_*` fallbacks were dropped in 1.4.0 | `META_*_LEGACY_KEYS`, `get_meta_array()` |
 | Schema option | `coopbolo_schema_version` (1 = 1.3.5 migration done) | `SCHEMA_OPTION` |
 | REST | `GET /wp-json/coopbolo/v1/collections` (was `cb-lw/v1` in 1.3.0–1.3.4), needs `edit_posts`, published only, **max 100**, ordered by title | `register_rest_routes()` |
 | Admin menu | Top-level **Logo Wrangler** | `register_admin_menu()` |
@@ -36,7 +36,7 @@ On `init` (priority 20, after other plugins register custom statuses), while `co
 - The option is set only when every move succeeded. Deactivating the plugin deletes the option, so the migration runs again after a reinstall.
 - Any WordPress load runs it, WP-CLI included.
 
-Older `_cb_balanced_logos_*` / `_cb_logo_soup_*` keys are left alone and still read as fallbacks. Rollback steps: [[rapidsos-deploy]]. See [[0007-coopbolo-prefix]].
+Older `_cb_balanced_logos_*` / `_cb_logo_soup_*` keys are no longer read at all — 1.4.0 dropped those fallbacks (commit `a5bc12b`). Collections saved by 1.3.x still migrate automatically, and the `_cb_lw_*` fallback stays. Rollback steps: [[rapidsos-deploy]]. See [[0007-coopbolo-prefix]], [[0008-remove-old-product-names]].
 
 ## Legacy meta behavior
 
