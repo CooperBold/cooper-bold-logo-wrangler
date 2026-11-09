@@ -35,7 +35,7 @@ tags: [meta]
 
 ## Concepts
 
-- [[rendering-pipeline]] — PHP placeholder render → conditional enqueue → React hydration → canvas measuring
+- [[rendering-pipeline]] — PHP placeholder render → conditional enqueue → React-free hydration → canvas measuring
 - [[carousel-and-splide]] — `layout="carousel"`, `wrapper` modes, the RapidSOS autoscroll snippet, bundled Splide
 
 ## Decisions
@@ -44,9 +44,10 @@ tags: [meta]
 - [[0002-migrate-legacy-plugin-path-activate-only]] — migrate `balanced-logos.php` entry on activate/update only
 - [[0003-plugin-name-cooper-bold-logo-wrangler]] — why the name changed four times; what legacy stays
 - [[0004-ship-source-in-release-zip]] — ZIP ships `src/` + `package.json`; readme links the public repo
-- [[0005-bundle-upstream-react-component]] — bundle logo-soup's React component, don't port it
+- [[0005-bundle-upstream-react-component]] — superseded for the frontend by 0009; still the rule for the editor
 - [[0006-php-owned-asset-enqueue]] — frontend assets enqueue from PHP only, when something renders
 - [[0007-coopbolo-prefix]] — 1.3.5 renames every PHP global to `coopbolo_` and migrates collections once
+- [[0009-react-free-frontend]] — the frontend mounts with the engine and plain DOM; no React on public pages (1.5.0)
 - [[0008-remove-old-product-names]] — 1.4.0 deletes the legacy shortcodes, blocks, loader, and every `active_plugins` write
 
 ## Guides

@@ -4,7 +4,7 @@ Tags: logo, logos, partners, brands, block
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.4.0
+Stable tag: 1.5.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,7 +37,7 @@ https://github.com/CooperBold/cooper-bold-logo-wrangler
 This ZIP also includes that source:
 
 * `src/block/index.js` and `src/block/edit.js` → `build/index.js`
-* `src/view.js` → `build/view.js`
+* `src/view.js` and `src/shared/mount-soup-dom.js` → `build/view.js`
 * `src/admin/collection-preview.js` → `build/collection-preview.js`
 
 Rebuild compiled assets with `@wordpress/scripts`:
@@ -88,6 +88,12 @@ There is no built-in limit. Add as many logos as your collection or block needs;
 2. Frontend — normalized logo strip after Cooper Bold Logo Wrangler scales and aligns each brand mark.
 
 == Changelog ==
+
+= 1.5.0 =
+* The frontend script no longer uses React. Pages that show a logo strip or carousel stop loading WordPress's React scripts (about 53 KB gzipped)
+* The rendered markup is unchanged (`.cb-lw-inner > div > span > img`), so existing CSS keeps working
+* Fix: a logo's link stays on the right logo when an earlier logo fails to load
+* The block editor and the collection preview still use React, which WordPress already loads there
 
 = 1.4.0 =
 * Remove the old product names: the `[balanced_logos]`, `[logo_soup]` and `[cooper-bold-logo-soup]` shortcodes, the `cooper-bold/balanced-logos` and `cooper-bold/logo-soup` blocks, and the `balanced-logos.php` loader. Use `[logo_wrangler]` and the Logo Wrangler block
@@ -248,6 +254,9 @@ There is no built-in limit. Add as many logos as your collection or block needs;
 * Sanitized shortcode and block attributes
 
 == Upgrade Notice ==
+
+= 1.5.0 =
+Lighter pages: the frontend no longer loads React. Markup and CSS classes are unchanged.
 
 = 1.4.0 =
 Removes old shortcode, block and CSS-class aliases. If your content still uses [logo_soup] or [balanced_logos], change it to [logo_wrangler] before updating.

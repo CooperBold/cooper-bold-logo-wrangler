@@ -1,15 +1,12 @@
 /* global MutationObserver, Splide */
 /**
  * Frontend hydration: mount LogoSoup on strip and carousel markup.
+ *
+ * No React here on purpose: importing wp-element or JSX makes WordPress load
+ * React on every page with a logo strip.
  */
 
-import { createRoot } from '@wordpress/element';
-import { LogoSoup } from '@sanity-labs/logo-soup/react';
-import {
-	markLogoSoupLoading,
-	withLogoSoupLifecycle,
-} from './shared/logo-soup-lifecycle';
-import { toLwProps } from './shared/to-lw-props';
+import { mountSoupDom } from './shared/mount-soup-dom';
 
 const mounted = new WeakMap();
 const carouselGroups = new WeakSet();
@@ -245,23 +242,12 @@ function mountLogoSoup( container ) {
 		return;
 	}
 
-	const soupProps = toLwProps( config );
-	if ( ! soupProps ) {
-		return;
+	const instance = mountSoupDom( container, config, {
+		context: { surface: 'strip' },
+	} );
+	if ( instance ) {
+		mounted.set( container, instance );
 	}
-
-	markLogoSoupLoading( container );
-	container.replaceChildren();
-	const root = createRoot( container );
-	root.render(
-		<LogoSoup
-			{ ...withLogoSoupLifecycle( soupProps, {
-				container,
-				context: { surface: 'strip' },
-			} ) }
-		/>
-	);
-	mounted.set( container, root );
 }
 
 /**
@@ -292,8 +278,7 @@ function mountCarouselReference( refContainer, groupId ) {
 		return;
 	}
 
-	const soupProps = toLwProps( { ...config, eagerLoad: true } );
-	if ( ! soupProps ) {
+	if ( ! Array.isArray( config.logos ) || ! config.logos.length ) {
 		return;
 	}
 
@@ -308,25 +293,17 @@ function mountCarouselReference( refContainer, groupId ) {
 		return;
 	}
 
-	const configLogoCount = Array.isArray( config.logos )
-		? config.logos.length
-		: 0;
+	const configLogoCount = config.logos.length;
 	coopboLog( 'mountCarouselReference', {
 		groupId,
 		slideCount: slides.length,
 		configLogoCount,
 	} );
 
-	markLogoSoupLoading( refContainer );
-	refContainer.replaceChildren();
-	const root = createRoot( refContainer );
-	root.render(
-		<LogoSoup
-			{ ...withLogoSoupLifecycle( soupProps, {
-				container: refContainer,
-				context: { surface: 'carousel-ref', groupId },
-			} ) }
-		/>
+	mountSoupDom(
+		refContainer,
+		{ ...config, eagerLoad: true },
+		{ context: { surface: 'carousel-ref', groupId } }
 	);
 
 	const carouselRoot =

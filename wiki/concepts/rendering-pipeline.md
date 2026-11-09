@@ -1,10 +1,10 @@
 ---
-title: Rendering pipeline (PHP render, React hydration)
+title: Rendering pipeline (PHP render, JS hydration)
 type: concept
 summary: How a logo row goes from block/shortcode to a normalized strip, and why assets load only from PHP.
 status: active
 created: 2026-10-19
-updated: 2026-11-08
+updated: 2026-11-09
 last_verified: 2026-11-08
 sources: [includes/class-coopbolo-renderer.php, includes/class-coopbolo-assets.php, src/view.js, src/block/block.json, docs/SAR-REVIEW.md, AI_RUNBOOK.md, "commits 1878ed6, a5bc12b, 9501c8d"]
 tags: [architecture, hydration, enqueue, bricks]
@@ -12,13 +12,13 @@ tags: [architecture, hydration, enqueue, bricks]
 
 # Rendering pipeline
 
-PHP renders placeholder markup; `build/view.js` then mounts the upstream React `LogoSoup` component on each mount node and replaces it with the normalized row. The block and every shortcode share one renderer and one view script. This shape won the June 2026 SAR run ([[sar-review]], "Candidate C").
+PHP renders placeholder markup; `build/view.js` then mounts a normalized row on each mount node with the logo-soup engine and plain DOM (no React since 1.5.0, [[0009-react-free-frontend]]) and replaces it with the normalized row. The block and every shortcode share one renderer and one view script. This shape won the June 2026 SAR run ([[sar-review]], "Candidate C").
 
 ## Steps
 
 1. **Render (PHP).** The block's `render_callback` and the shortcode handler both call `COOPBOLO_Renderer` (`includes/class-coopbolo-plugin.php`). It sanitizes attributes, resolves a collection if `collection`/`id` is set ([[logo-collections]]), and prints `.cb-lw-wrapper > .cb-lw-inner[data-cb-lw="<json>"]` with placeholder `<img>`s. The duplicate legacy `cb-balanced-logos*` classes and the `data-cb-balanced-logos` attribute were removed in 1.4.0; `cb-lw-*` and `data-cb-lw*` are unchanged because themes target them.
 2. **Enqueue (PHP).** Rendering calls `COOPBOLO_Assets::enqueue_frontend()`. As an early pass, `maybe_enqueue()` on `wp_enqueue_scripts` checks the singular post with `has_block()` / `has_shortcode()` for `cooper-bold/logo-wrangler` and `logo_wrangler`, **plus the Bricks meta `_bricks_page_content_2`** (added in 1.2.4, `get_post_content_for_detection()`), so builder pages get assets in `<head>`.
-3. **Hydrate (JS).** `src/view.js` finds `[data-cb-lw]`, parses the JSON, and mounts with `createRoot`. A `WeakMap` stops a node from mounting twice. Carousels then fire `coopbolo-hydrated` (bubbling `CustomEvent`; the old `cb-lw-hydrated` and `cb-balanced-logos-hydrated` names were replaced in 1.4.0).
+3. **Hydrate (JS).** `src/view.js` finds `[data-cb-lw]`, parses the JSON, and mounts with `mountSoupDom()` (`src/shared/mount-soup-dom.js`). A `WeakMap` stops a node from mounting twice. Carousels then fire `coopbolo-hydrated` (bubbling `CustomEvent`; the old `cb-lw-hydrated` and `cb-balanced-logos-hydrated` names were replaced in 1.4.0).
 4. **Normalize (library).** `logo-soup` loads each image into a canvas to measure it. That is why logo URLs must be same-origin or CORS-enabled (see [[gotchas]]). Lifecycle hooks from 1.3.0 clear the `cb-lw-soup-loading` class on success or failure ([[sanity-logo-soup]]).
 
 ## Why `block.json` has no `viewScript` or `style`

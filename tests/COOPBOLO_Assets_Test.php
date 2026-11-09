@@ -137,4 +137,18 @@ final class COOPBOLO_Assets_Test extends TestCase {
 		$this->assertArrayNotHasKey( 'cb_test_dequeued', $GLOBALS );
 		$this->assertSame( array( COOPBOLO_Assets::SPLIDE_AUTOSCROLL_SCRIPT_HANDLE ), wp_scripts()->registered[ COOPBOLO_Assets::VIEW_SCRIPT_HANDLE ]->deps );
 	}
+
+	/**
+	 * WordPress loads every handle the built view script declares. A React handle here
+	 * puts ~57 KB of React on each page that shows a logo strip.
+	 */
+	public function test_frontend_view_script_does_not_depend_on_react(): void {
+		$asset_file = dirname( __DIR__ ) . '/build/view.asset.php';
+		$this->assertFileExists( $asset_file );
+		$asset = include $asset_file;
+		$this->assertSame(
+			array(),
+			array_values( array_intersect( $asset['dependencies'], array( 'react', 'react-dom', 'react-jsx-runtime', 'wp-element' ) ) )
+		);
+	}
 }

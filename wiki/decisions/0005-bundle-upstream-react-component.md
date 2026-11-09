@@ -2,9 +2,9 @@
 title: Bundle the upstream React component, don't port it
 type: decision
 summary: The frontend bundles @sanity-labs/logo-soup's React component and hydrates PHP markup, instead of reimplementing the algorithm in vanilla JS or PHP.
-status: active
+status: superseded
 created: 2026-10-19
-updated: 2026-10-19
+updated: 2026-11-09
 last_verified: 2026-10-19
 sources: [README.md, AGENTS.md, docs/SAR-REVIEW.md, package.json]
 tags: [architecture, react, dependencies]
@@ -12,7 +12,7 @@ tags: [architecture, react, dependencies]
 
 # Bundle the upstream React component
 
-**Status:** active since the first build (2026-06-12).
+**Status:** superseded for the frontend by [[0009-react-free-frontend]] (2026-11-09). Still true for the block editor and the collection preview, and for "use the upstream library, don't reimplement the algorithm".
 
 ## Decision
 

@@ -1,6 +1,6 @@
 {
   "name": "cooper-bold-logo-wrangler",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "WordPress plugin wrapping @sanity-labs/logo-soup for harmonious logo displays.",
   "private": true,
   "license": "GPL-2.0-or-later",

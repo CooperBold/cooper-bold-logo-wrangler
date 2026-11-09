@@ -45,7 +45,8 @@ No built-in cap on logos per collection, block, or shortcode. Admin users manage
 ## Do not
 
 - Commit `node_modules/` or secrets
-- Port logo-soup to vanilla JS unless upstream API changes make React bundling untenable
+- Reimplement the logo-soup measuring algorithm. Use the library's engine (`createLogoSoup` from `@sanity-labs/logo-soup`)
+- Import React, `@wordpress/element`, JSX, `to-lw-props.js` or `logo-soup-lifecycle.js` from `src/view.js` or anything it imports. That makes WordPress load React on every page with a strip. The frontend mounts with `src/shared/mount-soup-dom.js`; Jest and PHPUnit guards fail if React comes back. The editor and collection preview keep React
 - Add marquee/animation unless explicitly requested — out of scope for logo-soup
 
 ## Verify after changes

@@ -193,3 +193,7 @@ Everything below was verified against the code on `main`, not inferred:
 Also finished the three items the 2026-11-03 gardener run left open (they were never committed): the `_cb_balanced_logos_*` / `_cb_logo_soup_*` fallback lines in [[logo-collections]], the "not uploaded yet" status on [[0007-coopbolo-prefix]], and the missing [[0008-remove-old-product-names]] line in [[index]].
 
 Note for the next run: two repo files are still stale and were left alone (this job only touches `wiki/`). `AI_RUNBOOK.md` lists the three legacy shortcodes, says the plugin is version 1.2.15, and pins logo-soup `^1.2.2` instead of `1.3.0`. `src/block/index.js` still has a header comment saying it registers "plus legacy block names still present in existing content", but it now registers only `cooper-bold/logo-wrangler`.
+
+## [2026-11-09] session | 1.5.0: React-free frontend (branch, not merged)
+
+Branch `feat/react-free-frontend`: `build/view.js` now mounts with the logo-soup engine and plain DOM, so public pages stop loading WordPress's React (53 KB gzipped). DOM compared against the 1.4.0 React build in wp-env: identical in seven cases. New [[0009-react-free-frontend]]; [[0005-bundle-upstream-react-component]] superseded for the frontend. Also found while testing: on 1.4.0 the old demo collection (id 60, only `_cb_logo_soup_*` meta) renders empty, as expected after 1.4.0 dropped that fallback.
