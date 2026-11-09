@@ -380,5 +380,17 @@
     },
     "namespace": "cooper-bold-logo-wrangler-wp-plugin",
     "timestamp": 1793442657.284639
+  },
+  {
+    "id": "local_1794220259068",
+    "text": "Wiki update: 1.4.0 and 1.3.6/1.3.7 reconciled across the wiki (2026-11-08)",
+    "metadata": {
+      "type": "wiki_log",
+      "date": "2026-11-08",
+      "verb": "update",
+      "source": "maintain_all_simplemem"
+    },
+    "namespace": "cooper-bold-logo-wrangler-wp-plugin",
+    "timestamp": 1794220259.068268
   }
 ]
