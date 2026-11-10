@@ -3,12 +3,12 @@ title: Cooper Bold Logo Wrangler Plugin
 type: entity
 summary: The plugin itself: identifiers, version, PHP classes per surface, and bootstrap behavior.
 created: 2026-06-12
-updated: 2026-11-03
-last_verified: 2026-11-03
+updated: 2026-11-10
+last_verified: 2026-11-10
 tags: [wordpress, plugin, logo-soup, cooper-bold, logo-wrangler]
 aliases: [logo-soup-plugin, balanced-logos, logo-wrangler, cooper-bold-logo-wrangler]
 status: active
-sources: [cooper-bold-logo-wrangler.php, includes/, package.json, readme.txt, "commit a5bc12b"]
+sources: [cooper-bold-logo-wrangler.php, includes/, package.json, readme.txt, "commit a5bc12b", "commit 403645d"]
 ---
 
 # Cooper Bold Logo Wrangler Plugin
@@ -19,7 +19,7 @@ WordPress plugin in this repository for displaying normalized logo strips on the
 
 - **Main file:** `cooper-bold-logo-wrangler.php`
 - **Package:** `CooperBoldLogoWrangler` / prefix `COOPBOLO_*` and `coopbolo_*` since 1.3.5 (`CB_LW_*` / `cb_lw_*` before; see [[0007-coopbolo-prefix]])
-- **Version:** **1.4.0** on `main` (`COOPBOLO_VERSION`, `Version` header, `package.json`, `block.json`, `readme.txt` Stable tag; `feat!: remove old product names and the legacy loader (1.4.0)`, commit `a5bc12b`, 2026-10-30). WP.org has **1.3.7** (uploaded 2026-10-29); 1.4.0 is built but not uploaded ([[wporg-review-thread]], [[0007-coopbolo-prefix]], [[0008-remove-old-product-names]])
+- **Version:** **1.5.0** on `main` (`COOPBOLO_VERSION`, `Version` header, `package.json`, `block.json`, `readme.txt` Stable tag; `feat: mount the frontend without React (1.5.0)`, commit `403645d`, 2026-11-09). The frontend now mounts with the logo-soup engine and plain DOM, so public pages no longer load WordPress's React ([[0009-react-free-frontend]]). WP.org has **1.3.7** (uploaded 2026-10-29); 1.4.0 and 1.5.0 are built but not uploaded ([[wporg-review-thread]], [[0007-coopbolo-prefix]], [[0008-remove-old-product-names]])
 - **Text domain:** `cooper-bold-logo-wrangler`
 - **Upstream:** Wraps `@sanity-labs/logo-soup` npm package
 - **Release ZIP:** now ships `src/` + `package.json` alongside compiled `build/` (since 1.3.1) so WP.org reviewers can regenerate assets via `@wordpress/scripts` ([[0004-ship-source-in-release-zip]])

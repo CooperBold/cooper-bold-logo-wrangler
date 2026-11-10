@@ -12,7 +12,7 @@ tags: [wordpress-org, legacy, breaking, bootstrap]
 
 # Remove old product names and the legacy loader (1.4.0)
 
-**Status:** active. Merged to `main` as **1.4.0** on 2026-10-30 (commit `a5bc12b`, branch `fix/remove-legacy-aliases` on top of `fix/js-hook-prefix` `9501c8d`). 1.4.0 is the `readme.txt` Stable tag on `main`; not uploaded to WP.org yet (1.3.7 was the last upload, 2026-10-29 — see [[wporg-review-thread]]).
+**Status:** active. Merged to `main` as **1.4.0** on 2026-10-30 (commit `a5bc12b`, branch `fix/remove-legacy-aliases` on top of `fix/js-hook-prefix` `9501c8d`). 1.4.0 was the `readme.txt` Stable tag on `main` until 1.5.0 replaced it (commit `403645d`); neither has been uploaded to WP.org yet (1.3.7 was the last upload, 2026-10-29 — see [[wporg-review-thread]]).
 
 ## Why
 

@@ -4,9 +4,9 @@ type: concept
 summary: How a logo row goes from block/shortcode to a normalized strip, and why assets load only from PHP.
 status: active
 created: 2026-10-19
-updated: 2026-11-09
-last_verified: 2026-11-08
-sources: [includes/class-coopbolo-renderer.php, includes/class-coopbolo-assets.php, src/view.js, src/block/block.json, docs/SAR-REVIEW.md, AI_RUNBOOK.md, "commits 1878ed6, a5bc12b, 9501c8d"]
+updated: 2026-11-10
+last_verified: 2026-11-10
+sources: [includes/class-coopbolo-renderer.php, includes/class-coopbolo-assets.php, src/view.js, src/shared/mount-soup-dom.js, src/shared/lw-sanitize.js, src/block/block.json, docs/SAR-REVIEW.md, AI_RUNBOOK.md, "commits 1878ed6, a5bc12b, 9501c8d, 403645d"]
 tags: [architecture, hydration, enqueue, bricks]
 ---
 
@@ -31,7 +31,7 @@ The Bricks builder canvas often does not run `view.js`. Since 1.2.1 (commit `187
 
 ## Editor and frontend parity
 
-`src/shared/to-lw-props.js` (`toLwProps`, `sanitizePreviewConfig`) is the single JS sanitizer for the block preview, the collection admin preview, and the frontend. PHP mirrors the same rules (named-color allowlist, clamps, `densityFactor` 0 when `densityAware` is off). The allowlists in PHP and JS must stay in sync ([[sar-review]] caveats; [[adversarial-review]]).
+`src/shared/lw-sanitize.js` holds the shared JS sanitizers: `clamp`, `stripPlainText`, `sanitizeCssColor`, `resolveAlt`, `sanitizeLink`, `sanitizePreviewConfig`, and `toSoupOptions`. Since 1.5.0 the frontend imports `toSoupOptions` from it directly; `src/shared/to-lw-props.js` (`toLwProps`, `sanitizePreviewConfig`) re-exports the same helpers and stays React-only, for the block editor and the collection preview. PHP mirrors the same rules (named-color allowlist, clamps, `densityFactor` 0 when `densityAware` is off). The allowlists in PHP and JS must stay in sync ([[sar-review]] caveats; [[adversarial-review]]).
 
 ## Related
 

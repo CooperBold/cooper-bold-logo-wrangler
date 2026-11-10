@@ -3,11 +3,11 @@ title: wp-env smoke test (Cooper Bold Logo Wrangler)
 type: guide
 summary: Local Docker (wp-env + Colima) smoke test: build, activate, render a shortcode, check assets and the release ZIP.
 created: 2026-06-17
-updated: 2026-11-08
-last_verified: 2026-11-08
+updated: 2026-11-10
+last_verified: 2026-11-10
 tags: [wordpress, wp-env, docker, colima, smoke-test, ci]
 aliases: [smoke-test, wp-env-smoke]
-sources: [docs/SMOKE-TEST.md, .wp-env.json, AI_RUNBOOK.md, .distignore, "commits a5bc12b, 096d507, 1f7112d"]
+sources: [docs/SMOKE-TEST.md, .wp-env.json, AI_RUNBOOK.md, .distignore, "commits a5bc12b, 096d507, 1f7112d, 403645d"]
 status: active
 ---
 
@@ -61,13 +61,13 @@ WP-CLI slug is `cooper-bold-logo-wrangler-wp-plugin` (from directory name). Remo
 
 ```bash
 composer install
-vendor/bin/phpunit      # PHPUnit — 62 tests on 1.4.0 (2026-11-08); was 49 on 1.3.5, 13 in June
-npm test                # Jest — 19 tests in 3 suites (2026-11-08); was 11 in June
+vendor/bin/phpunit      # PHPUnit — 63 tests on 1.5.0 (2026-11-10); was 62 on 1.4.0, 49 on 1.3.5, 13 in June
+npm test                # Jest — 32 tests in 4 suites (2026-11-10); was 19 in 3 suites on 1.4.0, 11 in June
 npm run verify          # .verify.sh gate: Jest + build
 npm run lint:js
 ```
 
-PHPUnit tests: `tests/COOPBOLO_*_Test.php` (renderer, assets, collections, bootstrap, admin branding). Jest: `src/shared/*.test.js`, `src/admin/collection-preview.test.js`.
+PHPUnit tests: `tests/COOPBOLO_*_Test.php` (renderer, assets, collections, bootstrap, admin branding). Jest: `src/shared/*.test.js`, `src/admin/collection-preview.test.js`. The 1.5.0 frontend work added `src/shared/mount-soup-dom.test.js` and a PHPUnit guard that the built `build/view.asset.php` lists no React handle ([[0009-react-free-frontend]]).
 
 ## Release zip verification
 

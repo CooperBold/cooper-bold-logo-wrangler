@@ -4,9 +4,9 @@ type: overview
 summary: What Cooper Bold Logo Wrangler is, who it's for, where it runs, and its release state.
 status: active
 created: 2026-10-19
-updated: 2026-11-08
-last_verified: 2026-11-08
-sources: [README.md, readme.txt, AGENTS.md, AI_SESSION_MEMORY.md, "https://app.notion.com/p/37afb6901a688069a9ebef05fe326252", "WP.org review email thread (Cooper Bold inbox, 2026-06-26 → 2026-10-29)", "commits a5bc12b, 3b97d49"]
+updated: 2026-11-10
+last_verified: 2026-11-10
+sources: [README.md, readme.txt, AGENTS.md, AI_SESSION_MEMORY.md, "https://app.notion.com/p/37afb6901a688069a9ebef05fe326252", "WP.org review email thread (Cooper Bold inbox, 2026-06-26 → 2026-10-29)", "commits a5bc12b, 3b97d49, 403645d"]
 tags: [overview]
 ---
 
@@ -38,7 +38,7 @@ A free WordPress plugin that makes a row of mixed partner logos look balanced. I
 | RapidSOS production | rapidsos.com | Cloudways DB push from staging *(per the RapidSOS repo audit; not checked here)* |
 | WordPress.org directory | slug `cooper-bold-logo-wrangler` (requested, not yet approved) | `.github/workflows/deploy.yml` on `v*` tags, once SVN access exists |
 
-Release state (2026-11-08): `main` is at **1.4.0** (commit `a5bc12b`, 2026-10-30), which removes the old product names and the legacy loader ([[0008-remove-old-product-names]]). **1.3.7** is the last WP.org upload (2026-10-29) and is waiting on the automated recheck; 1.4.0 is built but not uploaded. Sources: `readme.txt` Stable tag, `AI_SESSION_MEMORY.md` 2026-10-29 entry, [[wporg-review-thread]].
+Release state (2026-11-10): `main` is at **1.5.0** (commit `403645d`, 2026-11-09), the React-free frontend: `build/view.js` mounts with the logo-soup engine and plain DOM, so public pages stop loading WordPress's React ([[0009-react-free-frontend]]). It sits on top of **1.4.0** (commit `a5bc12b`, 2026-10-30), which removes the old product names and the legacy loader ([[0008-remove-old-product-names]]). **1.3.7** is the last WP.org upload (2026-10-29) and is waiting on the automated recheck; neither 1.4.0 nor 1.5.0 is uploaded. Sources: `readme.txt` Stable tag and 1.5.0 changelog, commit `403645d`, [[wporg-review-thread]].
 
 RapidSOS staging ran **1.2.11** under the old `cooper-bold-logo-soup` slug as of 2026-08-13 (RapidSOS repo `wiki/sources/site-code-audit-2026-08-13.md`). Moving it to 1.3.x is a slug change, not a drop-in; see [[gotchas]].
 

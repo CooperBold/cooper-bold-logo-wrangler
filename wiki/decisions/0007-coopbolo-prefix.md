@@ -12,7 +12,7 @@ tags: [wordpress-org, prefix, migration, cpt]
 
 # Rename the PHP prefix to coopbolo_ and migrate collections
 
-**Status:** active. Shipped as **1.3.5** and merged to `main` on 2026-10-22 (commits `a585da6` and the `40f3028` hardening gate). 1.3.5 was not uploaded on its own; its prefix fix reached WP.org in **1.3.7** (uploaded 2026-10-29, see [[wporg-review-thread]]), and `main` is now at 1.4.0 ([[0008-remove-old-product-names]]).
+**Status:** active. Shipped as **1.3.5** and merged to `main` on 2026-10-22 (commits `a585da6` and the `40f3028` hardening gate). 1.3.5 was not uploaded on its own; its prefix fix reached WP.org in **1.3.7** (uploaded 2026-10-29, see [[wporg-review-thread]]), and `main` is now at 1.5.0 ([[0008-remove-old-product-names]], [[0009-react-free-frontend]]).
 
 ## Why
 

@@ -4,8 +4,8 @@ type: overview
 summary: Append-only history of wiki changes. Older entries are not strictly date-ordered.
 status: active
 created: 2026-06-12
-updated: 2026-11-08
-last_verified: 2026-11-08
+updated: 2026-11-10
+last_verified: 2026-11-10
 sources: []
 tags: [meta]
 ---
@@ -197,3 +197,25 @@ Note for the next run: two repo files are still stale and were left alone (this 
 ## [2026-11-09] session | 1.5.0: React-free frontend (branch, not merged)
 
 Branch `feat/react-free-frontend`: `build/view.js` now mounts with the logo-soup engine and plain DOM, so public pages stop loading WordPress's React (53 KB gzipped). DOM compared against the 1.4.0 React build in wp-env: identical in seven cases. New [[0009-react-free-frontend]]; [[0005-bundle-upstream-react-component]] superseded for the frontend. Also found while testing: on 1.4.0 the old demo collection (id 60, only `_cb_logo_soup_*` meta) renders empty, as expected after 1.4.0 dropped that fallback.
+
+## [2026-11-10] update | 1.5.0 reconciled across the wiki; `main` is at 1.5.0
+
+Two commits in the 24-hour window. **`403645d`** (`feat: mount the frontend without React (1.5.0)`, 2026-11-09) and **`e936d2f`** (`wiki: auto-commit from 2026-11-10 (nightly-simplemem)`, 2026-11-10, which only appended a memory record to `docs/simplemem/memories.json` mirroring the 2026-11-09 entry above — no wiki content change).
+
+**This corrects the 2026-11-09 entry above:** `403645d` is **merged into `main`**, not a branch. `git branch --contains 403645d` lists `main`, and `main` equals `origin/main` at `e936d2f`. The branch `feat/react-free-frontend` still exists and points at the same commit. "branch, not merged" is now history, the same way `9501c8d` and `a5bc12b` were corrected in the 2026-11-08 entry.
+
+Everything below was verified against the code on `main`:
+
+- **Version is 1.5.0** everywhere it is declared: `Version:` header and `COOPBOLO_VERSION` in `cooper-bold-logo-wrangler.php`, `package.json`, `src/block/block.json`, and the `readme.txt` Stable tag.
+- **New frontend files:** `src/shared/mount-soup-dom.js` (the DOM writer), `src/shared/lw-sanitize.js` and `src/shared/soup-loading.js` (the React-free helpers). `to-lw-props.js` and `logo-soup-lifecycle.js` re-export them and stay React-only, for the block editor and the collection preview.
+- **`AGENTS.md` "Do not" section changed.** The old rule "Port logo-soup to vanilla JS unless upstream API changes make React bundling untenable" was replaced by two rules: do not reimplement the logo-soup measuring algorithm (use the library's `createLogoSoup`), and do not import React, `@wordpress/element`, JSX, `to-lw-props.js`, or `logo-soup-lifecycle.js` from `src/view.js` or anything it imports.
+- **Guards:** Jest `mount-soup-dom.test.js` checks the DOM shape, links, failure handling, and that `view.js` and its three shared modules import no React module. PHPUnit `COOPBOLO_Assets_Test::test_frontend_view_script_does_not_depend_on_react` fails if `build/view.asset.php` lists a React handle.
+- **`readme.txt`:** new 1.5.0 changelog and upgrade notice, and the `== Source code ==` mapping now reads `src/view.js` **and** `src/shared/mount-soup-dom.js` → `build/view.js`. That mapping is the WP.org source check ([[0004-ship-source-in-release-zip]]).
+- **Behavior change:** a logo's link is matched by `src`, not by render position, so a failed logo no longer shifts every later link.
+- **WP.org:** 1.3.7 is still the last upload (2026-10-29, awaiting the automated recheck). Neither 1.4.0 nor 1.5.0 is uploaded.
+- **Counts** re-run on 2026-11-10: PHPUnit **63 tests, 177 assertions**; Jest **32 tests in 4 suites**.
+- **`AI_SESSION_MEMORY.md` and `AI_RUNBOOK.md` were not changed** in the window (both last touched 2026-10-30), so there was nothing to ingest from them.
+
+**Pages updated:** [[0009-react-free-frontend]] (status: merged to `main`, still not uploaded; added the `AGENTS.md` guard), [[0005-bundle-upstream-react-component]] (the `AGENTS.md` rule it quoted was replaced in 1.5.0), [[0007-coopbolo-prefix]] and [[0008-remove-old-product-names]] (`main` is now 1.5.0; 1.4.0 is no longer the Stable tag), [[index]] (Must-know now names 1.5.0 and adds a no-React-on-public-pages rule; decision list put in order), [[overview]] (release state), [[wordpress-plugin]] (version 1.5.0), [[gotchas]] (three new rules: never import React into the frontend bundle, don't reimplement the measuring algorithm, links match by `src`; release-state line corrected), [[rendering-pipeline]] (the shared JS sanitizer moved to `lw-sanitize.js`), [[sanity-logo-soup]] (the frontend uses the framework-free engine; the React component is editor/preview only), [[logo-collections]] and [[gutenberg-block-balanced-logos]] (sanitizer path; the editor keeps React), [[carousel-and-splide]] (frontmatter, dropped a stale line number), [[wp-env-smoke-test]] (test counts and the new guard), [[wordpress-org-submission]] (status block; the 1.5.0 upgrade notice), [[wporg-review-thread]] (timeline through 2026-11-09; "next upload should be 1.5.0").
+
+Note for the next run: two repo files are still stale and were left alone again (this job only touches `wiki/`). `AI_RUNBOOK.md` still lists the three legacy shortcodes, says the plugin is version 1.2.15, and pins logo-soup `^1.2.2` instead of `1.3.0`. `src/block/index.js` still has a header comment saying it registers "plus legacy block names still present in existing content", but it now registers only `cooper-bold/logo-wrangler`. Both were flagged on 2026-11-08 and still are not fixed.

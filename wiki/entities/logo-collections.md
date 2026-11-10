@@ -4,9 +4,9 @@ type: entity
 summary: The reusable logo-set custom post type, its meta keys (with legacy fallbacks), REST route, and admin UI.
 status: active
 created: 2026-10-19
-updated: 2026-11-08
-last_verified: 2026-11-08
-sources: [includes/class-coopbolo-collections.php, readme.txt, "commit ee4d016", "commit a5bc12b", "RapidSOS repo deploy/wordpress/logo-soup/README.md"]
+updated: 2026-11-10
+last_verified: 2026-11-10
+sources: [includes/class-coopbolo-collections.php, readme.txt, "commit ee4d016", "commit a5bc12b", "commit 403645d", "RapidSOS repo deploy/wordpress/logo-soup/README.md"]
 tags: [cpt, admin, collections, rest]
 ---
 
@@ -47,7 +47,7 @@ Older `_cb_balanced_logos_*` / `_cb_logo_soup_*` keys are no longer read at all 
 
 ## Admin UX facts
 
-- Live preview in the editor uses the same sanitizer as the frontend (`src/admin/collection-preview.js`, `to-lw-props.js`). 1.1.11 fixed a preview/frontend mismatch.
+- Live preview in the editor uses the same sanitizer as the frontend (`src/admin/collection-preview.js`, `src/shared/to-lw-props.js`; the frontend's own copy now lives in `src/shared/lw-sanitize.js` since 1.5.0). 1.1.11 fixed a preview/frontend mismatch.
 - One-click copy for the shortcode on the edit screen and list table (1.1.1).
 - There is no bulk import (no CLI, no write REST). RapidSOS filled a 70-logo collection with a one-shot WPCode snippet instead (RapidSOS repo `deploy/wordpress/logo-soup/`).
 - Cooper Bold credit in the wp-admin footer on these screens only (`class-coopbolo-admin-branding.php`, 1.1.6–1.1.10).

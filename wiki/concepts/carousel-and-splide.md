@@ -4,9 +4,9 @@ type: concept
 summary: How layout="carousel" works with Bricks Nested Sliders, the RapidSOS autoscroll snippet, and the bundled Splide.
 status: active
 created: 2026-10-19
-updated: 2026-11-08
-last_verified: 2026-11-08
-sources: [includes/class-coopbolo-renderer.php, includes/class-coopbolo-assets.php, src/view.js, readme.txt, lib/splide/README.md, docs/RAPIDSOS-DEPLOY.md, "commits b65550b, 2ebd174, 096d507, 1f7112d"]
+updated: 2026-11-10
+last_verified: 2026-11-10
+sources: [includes/class-coopbolo-renderer.php, includes/class-coopbolo-assets.php, src/view.js, src/shared/mount-soup-dom.js, readme.txt, lib/splide/README.md, docs/RAPIDSOS-DEPLOY.md, "commits b65550b, 2ebd174, 096d507, 1f7112d, 403645d"]
 tags: [carousel, splide, bricks, rapidsos]
 ---
 
@@ -51,7 +51,7 @@ The plugin declares `Requires PHP: 7.4`, and WordPress does not polyfill PHP 8 f
 
 ## Fail-open
 
-If hydration stalls, a timer shows the slides anyway. The changelog says 4 s (1.2.9) then 1.5 s (1.2.11); the code now uses `HYDRATION_FAIL_OPEN_MS = 800` (`src/view.js` line 20). Trust the code.
+If hydration stalls, a timer shows the slides anyway. The changelog says 4 s (1.2.9) then 1.5 s (1.2.11); the code now uses `HYDRATION_FAIL_OPEN_MS = 800` (`src/view.js`). Trust the code.
 
 ## Debugging
 

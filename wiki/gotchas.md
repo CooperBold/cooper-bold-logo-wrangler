@@ -4,9 +4,9 @@ type: overview
 summary: Known traps. Check here after a repeated failure.
 status: active
 created: 2026-10-19
-updated: 2026-11-08
-last_verified: 2026-11-08
-sources: [AGENTS.md, AI_SESSION_MEMORY.md, AI_RUNBOOK.md, readme.txt, .wp-env.json, .distignore, .github/workflows/deploy.yml, includes/class-coopbolo-collections.php, includes/class-coopbolo-assets.php, src/view.js, "commits a5bc12b, 096d507, 1f7112d"]
+updated: 2026-11-10
+last_verified: 2026-11-10
+sources: [AGENTS.md, AI_SESSION_MEMORY.md, AI_RUNBOOK.md, readme.txt, .wp-env.json, .distignore, .github/workflows/deploy.yml, includes/class-coopbolo-collections.php, includes/class-coopbolo-assets.php, src/view.js, src/shared/mount-soup-dom.js, "commits a5bc12b, 096d507, 1f7112d, 403645d"]
 tags: [gotchas]
 ---
 
@@ -28,6 +28,9 @@ One line each: the trap, then the fix or the page with details.
 - **No `viewScript` or `style` in `block.json`.** It double-enqueues with the shortcode path. See [[0006-php-owned-asset-enqueue]].
 - **Don't re-add the legacy shortcodes, blocks, or meta keys.** 1.4.0 deleted them on purpose: "Logo Soup" was the first WP.org naming complaint, and the `active_plugins` rewrite was an Aug 6 flag. RapidSOS (still on 1.2.11) was confirmed as not depending on them. See [[0008-remove-old-product-names]].
 - **Don't change the strip placeholder DOM (`div > span > img`).** Bricks designer CSS targets `.cb-lw-inner > div > span` and must match before and after hydration. See [[rendering-pipeline]].
+- **Never import React into the frontend bundle.** Since 1.5.0 `src/view.js` and everything it imports must stay React-free — no `@wordpress/element`, no JSX, and not `to-lw-props.js` or `logo-soup-lifecycle.js`. A React handle in `build/view.asset.php` makes WordPress load ~53 KB gzipped of React on every page with a strip. A Jest import check and a PHPUnit guard fail if it comes back. The editor and the collection preview keep React. See [[0009-react-free-frontend]].
+- **Don't reimplement the logo-soup measuring algorithm.** Use the library's engine (`createLogoSoup` from `@sanity-labs/logo-soup`); the React-free frontend is a DOM writer, not a port of the algorithm. See [[0009-react-free-frontend]], [[0005-bundle-upstream-react-component]].
+- **A logo's link is matched by `src`, not by render position.** Since 1.5.0 a logo that fails to load no longer shifts every later logo's link. The React build matched by position. See [[0009-react-free-frontend]].
 - **Not a marquee.** Don't add animation unless asked (`AGENTS.md`). The carousel scroll belongs to Splide or the site snippet.
 - **New build entry → update `readme.txt` `== Source code ==` too**, or WP.org's source check fails again. See [[0004-ship-source-in-release-zip]].
 
@@ -42,7 +45,7 @@ One line each: the trap, then the fix or the page with details.
 ## Releases and environments
 
 - **RapidSOS 1.2.11 → 1.3.x is not a drop-in.** It means a new folder, no loader for the old file, and a new REST route. Going to 1.4.x also means the legacy shortcodes and blocks are gone, so old content must be updated to `[logo_wrangler]`. See [[rapidsos-site]].
-- **1.3.7 is the version on WP.org** (uploaded 2026-10-29, awaiting the automated recheck). It carries the `coopbolo_` prefix from 1.3.5 plus the PHP 7.4 and Auto Scroll fixes; `main` is at 1.4.0 and is not uploaded. See [[wporg-review-thread]], [[0007-coopbolo-prefix]], [[0008-remove-old-product-names]].
+- **1.3.7 is the version on WP.org** (uploaded 2026-10-29, awaiting the automated recheck). It carries the `coopbolo_` prefix from 1.3.5 plus the PHP 7.4 and Auto Scroll fixes; `main` is at 1.5.0 and is not uploaded. See [[wporg-review-thread]], [[0007-coopbolo-prefix]], [[0008-remove-old-product-names]], [[0009-react-free-frontend]].
 - **Check the ZIP's top level before uploading.** `.distignore` must list every new dev folder; `.claude/` and `.wp-env.override.json` leaked into the first 1.3.4 build. As of 1.4.0 expect only `LICENSE admin build cooper-bold-logo-wrangler.php includes lib package-lock.json package.json readme.txt src` (no `balanced-logos.php` — it was deleted).
 - **No PHP 8-only string or array functions in plugin code.** The plugin supports PHP 7.4 (`Requires PHP: 7.4`), and WordPress does not polyfill `str_contains()`. The Auto Scroll duplicate check used it until 1.3.6, which switched to `strpos()`; a guard test fails if one comes back. See [[carousel-and-splide]].
 - **A theme that already loads Splide Auto Scroll must not get a second copy.** The plugin finds another handle by `src` and defers to it; `reconcile_autoscroll()` settles it late on `wp_print_footer_scripts`, because block themes render content before `wp_enqueue_scripts`. Since 1.3.7. See [[carousel-and-splide]].

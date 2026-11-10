@@ -4,8 +4,8 @@ type: decision
 summary: The frontend bundles @sanity-labs/logo-soup's React component and hydrates PHP markup, instead of reimplementing the algorithm in vanilla JS or PHP.
 status: superseded
 created: 2026-10-19
-updated: 2026-11-09
-last_verified: 2026-10-19
+updated: 2026-11-10
+last_verified: 2026-11-10
 sources: [README.md, AGENTS.md, docs/SAR-REVIEW.md, package.json]
 tags: [architecture, react, dependencies]
 ---
@@ -16,7 +16,7 @@ tags: [architecture, react, dependencies]
 
 ## Decision
 
-`build/view.js` bundles the upstream `LogoSoup` React component with WordPress's React (`@wordpress/element`) and mounts it on PHP-rendered nodes ([[rendering-pipeline]]). README: the component "is bundled rather than ported to vanilla JS to preserve upstream behavior with minimal maintenance." `AGENTS.md` says not to port unless upstream API changes make React bundling untenable.
+`build/view.js` bundles the upstream `LogoSoup` React component with WordPress's React (`@wordpress/element`) and mounts it on PHP-rendered nodes ([[rendering-pipeline]]). README: the component "is bundled rather than ported to vanilla JS to preserve upstream behavior with minimal maintenance." `AGENTS.md` used to say not to port unless upstream API changes make React bundling untenable; since 1.5.0 it says the opposite for the frontend — don't reimplement the logo-soup measuring algorithm, use the library's engine.
 
 ## Why
 

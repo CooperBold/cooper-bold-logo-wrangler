@@ -3,12 +3,12 @@ title: Logo Wrangler Gutenberg Block
 type: entity
 summary: The cooper-bold/logo-wrangler dynamic block (the only registered block since 1.4.0) and its frontend hydration hooks.
 created: 2026-06-12
-updated: 2026-11-03
-last_verified: 2026-11-03
+updated: 2026-11-10
+last_verified: 2026-11-10
 tags: [gutenberg, block-editor, logo-wrangler]
 aliases: [cooper-bold/balanced-logos, cooper-bold/logo-wrangler, logo-wrangler-block]
 status: active
-sources: [src/block/block.json, src/block/index.js, src/view.js, includes/class-coopbolo-plugin.php, "commit 385fbad", "commit a5bc12b"]
+sources: [src/block/block.json, src/block/index.js, src/view.js, includes/class-coopbolo-plugin.php, "commit 385fbad", "commit a5bc12b", "commit 403645d"]
 ---
 
 # Logo Wrangler Gutenberg Block
@@ -26,6 +26,8 @@ Dynamic block registered from `src/block/block.json`.
 ## How it's used in this project
 
 Editor UI in `src/block/edit.js`. Server render via `render_callback` in `includes/class-coopbolo-plugin.php` delegating to `COOPBOLO_Renderer`. Shared prop sanitizer: `src/shared/to-lw-props.js` (`toLwProps`).
+
+The editor bundle **keeps React** — WordPress already loads it in wp-admin, so there is nothing to save. Only the frontend is React-free, since 1.5.0 ([[0009-react-free-frontend]]).
 
 Frontend hydration (`src/view.js`) reads the `data-cb-lw` attribute (the legacy `data-cb-balanced-logos` fallback was removed in [[0008-remove-old-product-names]]) and fires a `coopbolo-hydrated` bubbling CustomEvent after a carousel hydrates; JS event names and the debug localStorage key (`coopbolo-debug`) carry the `coopbolo-` prefix since `fix/js-hook-prefix` (commit `9501c8d`), which dropped the duplicate `cb-balanced-logos-hydrated`. Debug opt-in: `window.COOPBOLO_DEBUG`, `localStorage['coopbolo-debug']`, or `?coopbolo_debug=1`.
 
