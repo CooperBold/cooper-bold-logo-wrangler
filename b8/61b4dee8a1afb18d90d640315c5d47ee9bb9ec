@@ -1,0 +1,46 @@
+wiki/concepts/carousel-and-splide.md
+  h_4e91bfaac52dbc 7-9,54
+wiki/concepts/rendering-pipeline.md
+  h_4e91bfaac52dbc 7-9,34
+wiki/decisions/0005-bundle-upstream-react-component.md
+  h_4e91bfaac52dbc 7-8,19
+wiki/decisions/0007-coopbolo-prefix.md
+  h_4e91bfaac52dbc 15
+wiki/decisions/0008-remove-old-product-names.md
+  h_4e91bfaac52dbc 15
+wiki/decisions/0009-react-free-frontend.md
+  h_4e91bfaac52dbc 7-9,15,32
+wiki/entities/gutenberg-block-balanced-logos.md
+  h_4e91bfaac52dbc 6-7,11,30-31
+wiki/entities/logo-collections.md
+  h_4e91bfaac52dbc 7-9,50
+wiki/entities/sanity-logo-soup.md
+  h_4e91bfaac52dbc 6-7,11,22-24,28-29,34
+wiki/entities/wordpress-plugin.md
+  h_4e91bfaac52dbc 6-7,11,22
+wiki/gotchas.md
+  h_4e91bfaac52dbc 7-9,31-33,48
+wiki/guides/wordpress-org-submission.md
+  h_4e91bfaac52dbc 6-7,10,47,103
+wiki/guides/wp-env-smoke-test.md
+  h_4e91bfaac52dbc 6-7,10,64-65,70
+wiki/index.md
+  h_4e91bfaac52dbc 7-8,17-18,52,62
+wiki/log.md
+  h_4e91bfaac52dbc 7-8,200-221
+wiki/overview.md
+  h_4e91bfaac52dbc 7-9,41
+wiki/sources/wporg-review-thread.md
+  h_4e91bfaac52dbc 7-9,36,51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b861b4dee8a1afb18d90d640315c5d47ee9bb9ec",
+  "prompts": {},
+  "humans": {
+    "h_4e91bfaac52dbc": {
+      "author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    }
+  }
+}
