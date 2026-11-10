@@ -392,5 +392,17 @@
     },
     "namespace": "cooper-bold-logo-wrangler-wp-plugin",
     "timestamp": 1794220259.068268
+  },
+  {
+    "id": "local_1794306659270",
+    "text": "Wiki session: 1.5.0: React-free frontend (branch, not merged) (2026-11-09)",
+    "metadata": {
+      "type": "wiki_log",
+      "date": "2026-11-09",
+      "verb": "session",
+      "source": "maintain_all_simplemem"
+    },
+    "namespace": "cooper-bold-logo-wrangler-wp-plugin",
+    "timestamp": 1794306659.2704551
   }
 ]
