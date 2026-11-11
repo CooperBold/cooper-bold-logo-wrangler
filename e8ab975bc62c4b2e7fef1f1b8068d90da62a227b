@@ -1,0 +1,14 @@
+{
+  "origin": {
+    "version": 1,
+    "sessionId": "detected-codex-mwbzapu6",
+    "model": "codex",
+    "promptCount": 0,
+    "promptSummary": "",
+    "durationMs": 8,
+    "linesAdded": 12,
+    "linesRemoved": 0,
+    "originUrl": "https://getorigin.io/sessions/detected-codex-mwbzapu6",
+    "timestamp": "2026-11-11T10:30:59.414Z"
+  }
+}
