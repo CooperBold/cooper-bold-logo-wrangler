@@ -106,6 +106,22 @@ This repo follows WordPress coding practices: `ABSPATH` guards, escaping, saniti
 | Plugin Check on live site | Staging WordPress install |
 | Marketing screenshots | Design-approved PNG exports |
 
+## Changing the public listing
+
+What WordPress.org shows, where it comes from, and how a change goes live:
+
+| On the plugin page | Edit | Goes live by |
+|---|---|---|
+| Icon | `assets/icon-256x256.png` (optional `icon-128x128.png`, or `icon.svg`) | push to `main` → `update-listing.yml` |
+| Banner | `assets/banner-772x250.png` (optional `banner-1544x500.png` for retina) | push to `main` → `update-listing.yml` |
+| Screenshots | `assets/screenshot-N.png` + captions under `== Screenshots ==` in `readme.txt` | push to `main` → `update-listing.yml` |
+| Short description (under the title, max 150 characters) | the line after the header block in `readme.txt` | push to `main` → `update-listing.yml` |
+| Description, FAQ, installation, tags | `readme.txt` sections and `Tags:` | push to `main` → `update-listing.yml` |
+| "Plugin homepage" link | `Plugin URI:` in `cooper-bold-logo-wrangler.php` | a release (bump version, `v*` tag → `deploy.yml`) |
+| Description in wp-admin's Plugins screen | `Description:` in `cooper-bold-logo-wrangler.php` | a release |
+
+`update-listing.yml` copies only `readme.txt` and `assets/` (`IGNORE_OTHER_FILES: true`), so unreleased code on `main` never ships from it, and it stops if the readme's `Stable tag` isn't a released version. WordPress.org can take a few minutes (images up to a few hours, CDN cache) to show a change. Rules for image sizes: https://developer.wordpress.org/plugins/wordpress-org/plugin-assets/
+
 ## Related
 
 - [[wporg-review-thread]] · [[0004-ship-source-in-release-zip]] · [[0003-plugin-name-cooper-bold-logo-wrangler]]

@@ -1,0 +1,41 @@
+name: Update WordPress.org listing
+
+# Pushing a change to readme.txt or assets/ on main updates the public listing
+# (description, FAQ, screenshots captions, banner, icon, screenshots) without a new
+# release. Plugin code never ships from here: only readme.txt and assets/ are copied.
+# The readme's Stable tag must stay equal to the released version.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'readme.txt'
+      - 'assets/**'
+  workflow_dispatch:
+
+jobs:
+  update:
+    name: Push readme and assets to WordPress.org
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check Stable tag matches a released version
+        run: |
+          stable="$(sed -n 's/^Stable tag:[[:space:]]*//p' readme.txt | tr -d '[:space:]')"
+          echo "Stable tag: $stable"
+          if ! curl -sf -o /dev/null "https://plugins.svn.wordpress.org/cooper-bold-logo-wrangler/tags/${stable}/"; then
+            echo "::error::Stable tag ${stable} is not released on WordPress.org. Release code with a v* tag (deploy.yml); this workflow only updates the listing."
+            exit 1
+          fi
+
+      - name: WordPress.org listing update
+        uses: 10up/action-wordpress-plugin-asset-update@stable
+        env:
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SLUG: cooper-bold-logo-wrangler
+          ASSETS_DIR: assets
+          IGNORE_OTHER_FILES: true
