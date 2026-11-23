@@ -1,0 +1,41 @@
+build/block/block.json
+  s_03705d752a0319::t_cb782b4451ffa6 5
+build/index.asset.php
+  s_03705d752a0319::t_392ac5b454a1c2 1
+build/index.js
+  s_03705d752a0319::t_499510ea99c31f 1
+cooper-bold-logo-wrangler.php
+  s_03705d752a0319::t_7b1481cd84e5ff 8,29
+docs/rapidsos-upgrade-from-1.2.sh
+  s_03705d752a0319::t_b435225f4e35c5 1-48
+includes/class-coopbolo-collections.php
+  s_03705d752a0319::t_fbb2900109da21 24,27,29,32,69-70,97-98,110,112-114,116,120-126
+package-lock.json
+  s_03705d752a0319::t_d7ea0f03871476 3,9
+package.json
+  s_03705d752a0319::t_4d2eba423149d9 3
+readme.txt
+  s_03705d752a0319::t_ab692e14549c26 7,94-97,269-271
+src/block/block.json
+  s_03705d752a0319::t_dcee9020191b5d 5
+tests/COOPBOLO_Collections_Test.php
+  s_03705d752a0319::t_88da662998454f 304-352
+wiki/entities/rapidsos-site.md
+  s_03705d752a0319::t_2f61639c38a018 7,32,34,36-38,40-46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ea9794d56d6086f380c7ae13118f42a0ccd08462",
+  "prompts": {},
+  "sessions": {
+    "s_03705d752a0319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f3ab7f11-5104-4a1b-9229-2aa40432082c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    }
+  }
+}
