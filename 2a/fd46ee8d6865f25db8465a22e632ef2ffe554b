@@ -1,0 +1,45 @@
+.github/workflows/deploy.yml
+  s_9f15e78cc7bf3d::t_78e47caa9ef17a 3-6,20-31,41-43,49-50
+README.md
+  s_9f15e78cc7bf3d::t_2e905f6137bf56 194
+docs/WORDPRESS-ORG-SUBMISSION.md
+  s_9f15e78cc7bf3d::t_d70a2c982e116d 87
+docs/wporg-assets/README.md
+  s_9f15e78cc7bf3d::t_dad330b15fa679 3,16,18
+readme.txt
+  s_9f15e78cc7bf3d::t_273840ce492c76 87-88
+scripts/generate-wporg-assets.py
+  s_9f15e78cc7bf3d::t_4f6d2d2ba1df10 2-6,10,66-67,69-70,87,111-113
+scripts/wporg-screenshots/README.md
+  s_9f15e78cc7bf3d::t_35a477f5a88168 1-15
+scripts/wporg-screenshots/make-demo-logos.py
+  s_9f15e78cc7bf3d::t_7c4c9c11346be2 1-83
+scripts/wporg-screenshots/seed.php
+  s_9f15e78cc7bf3d::t_6d38f11805fa17 1-18
+scripts/wporg-screenshots/shoot.js
+  s_9f15e78cc7bf3d::t_a34625482dd7f6 1-41
+wiki/gotchas.md
+  s_9f15e78cc7bf3d::t_d39eda933f1acf 55
+wiki/guides/wordpress-org-submission.md
+  s_9f15e78cc7bf3d::t_1265a074841847 6-7,55-56,65-67,70,75
+wiki/index.md
+  s_9f15e78cc7bf3d::t_bbbcaa78e65197 17
+wiki/log.md
+  s_9f15e78cc7bf3d::t_2f1fa06bf04eaf 226-229
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2afd46ee8d6865f25db8465a22e632ef2ffe554b",
+  "prompts": {},
+  "sessions": {
+    "s_9f15e78cc7bf3d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_9f15e78cc7bf3d",
+        "model": "unknown"
+      },
+      "human_author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    }
+  }
+}
