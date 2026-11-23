@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
-"""Generate WordPress.org directory PNG placeholders (banner, icon, screenshots)."""
+"""Generate WordPress.org directory art: banner and icon.
+
+Screenshots are real captures of the plugin (see wiki/guides/wordpress-org-submission.md),
+so this script only draws them with --placeholder-screenshots.
+"""
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -58,10 +63,11 @@ def banner() -> None:
     draw_logo_mark(draw, 120, 125)
     title_font = load_font(36, bold=True)
     sub_font = load_font(18)
-    draw.text((280, 95), "Cooper Bold", fill=WHITE, font=title_font)
+    draw.text((270, 82), "Logo Wrangler", fill=WHITE, font=title_font)
+    draw.text((272, 130), "by Cooper Bold", fill=MUTED, font=sub_font)
     draw.text(
-        (280, 145),
-        "Cooper Bold partner logo strips for WordPress",
+        (272, 160),
+        "Balanced partner logo strips for WordPress",
         fill=MUTED,
         font=sub_font,
     )
@@ -78,7 +84,7 @@ def icon() -> None:
             fill=color,
         )
     font = load_font(22, bold=True)
-    draw.text((128, 198), "LS", fill=WHITE, font=font, anchor="mm")
+    draw.text((128, 198), "LW", fill=WHITE, font=font, anchor="mm")
     img.save(ASSETS / "icon-256x256.png", optimize=True)
 
 
@@ -102,8 +108,9 @@ def main() -> None:
     ASSETS.mkdir(parents=True, exist_ok=True)
     banner()
     icon()
-    screenshot(1, "Block editor", "Select logos and tune normalization")
-    screenshot(2, "Frontend strip", "Normalized logo row on the page")
+    if "--placeholder-screenshots" in sys.argv:
+        screenshot(1, "Block editor", "Select logos and tune normalization")
+        screenshot(2, "Frontend strip", "Normalized logo row on the page")
     print("Wrote PNG assets to", ASSETS)
 
 

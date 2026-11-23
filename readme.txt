@@ -84,8 +84,8 @@ There is no built-in limit. Add as many logos as your collection or block needs;
 
 == Screenshots ==
 
-1. Block editor — select logos from the media library and tune normalization in the sidebar.
-2. Frontend — normalized logo strip after Cooper Bold Logo Wrangler scales and aligns each brand mark.
+1. Block editor — pick a saved logo collection (or add logos from the Media Library) and tune normalization in the sidebar.
+2. Frontend — eight logo files of different shapes and padding, balanced into one even strip.
 
 == Changelog ==
 

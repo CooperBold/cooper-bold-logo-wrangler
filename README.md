@@ -191,7 +191,7 @@ Excluded (via `.distignore`): `src/`, `node_modules/`, AI/wiki docs, `.cursor/`,
 
 ### WordPress.org assets (banners, icons, screenshots)
 
-Add images under `.wordpress-org/` in the repo root. The deploy action copies that folder to the SVN `assets/` directory (not plugin trunk). See [10up’s asset-update action](https://github.com/10up/action-wordpress-plugin-asset-update) to refresh readme/assets between tagged releases.
+Directory images (banner, icon, screenshots) live in `assets/` in the repo root. `deploy.yml` sets `ASSETS_DIR: assets`, and the deploy action copies that folder to the SVN `assets/` directory (not plugin trunk). See [10up’s asset-update action](https://github.com/10up/action-wordpress-plugin-asset-update) to refresh readme/assets between tagged releases.
 
 ## WordPress.org release
 

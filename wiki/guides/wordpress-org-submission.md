@@ -3,8 +3,8 @@ title: Submit to WordPress.org Plugin Directory
 type: guide
 summary: Maintainer steps to get the plugin into the WP.org directory: ZIP, review, SVN secrets, tag deploy, directory assets.
 created: 2026-06-14
-updated: 2026-11-10
-last_verified: 2026-11-10
+updated: 2026-11-23
+last_verified: 2026-11-23
 tags: [wordpress, release, deploy, svn, github-actions]
 aliases: [wp-org-submit, release-plugin]
 sources: [docs/WORDPRESS-ORG-SUBMISSION.md, README.md, .github/workflows/deploy.yml, readme.txt, "commits a5bc12b, 3b97d49, 403645d"]
@@ -52,8 +52,8 @@ After SVN access is granted:
 
 1. Open **GitHub → CooperBold/cooper-bold-logo-wrangler** **→ Settings → Secrets and variables → Actions**.
 2. Add repository secrets:
-   - `SVN_USERNAME` — your wordpress.org username.
-   - `SVN_PASSWORD` — your [application password](https://make.wordpress.org/core/handbook/tutorials/generate-a-password-for-svn/) (not your login password).
+   - `SVN_USERNAME` — `nicholas.eymann` (the login username, case-sensitive; the approval email of 2026-10-30 gives this one. The profile URL uses `nicholaseymann` without the dot, which SVN won't accept).
+   - `SVN_PASSWORD` — the SVN password set under Account & Security in the WordPress.org profile (separate from the login password): https://profiles.wordpress.org/me/profile/edit/group/3/?screen=svn-password
 
 Pushes of tags matching `v*` on `main` run `.github/workflows/deploy.yml`, which builds assets and deploys via [10up/action-wordpress-plugin-deploy](https://github.com/10up/action-wordpress-plugin-deploy).
 
@@ -62,22 +62,17 @@ Pushes of tags matching `v*` on `main` run `.github/workflows/deploy.yml`, which
 When SVN is ready and secrets are set:
 
 ```bash
-git checkout main
-git pull --rebase
-npm ci && npm run build
-git status   # ensure build/ is committed if changed
-git tag -a v1.0.0 -m "Release 1.0.0"
-git push origin main
-git push origin v1.0.0
+git checkout main && git pull --rebase
+git tag -a v1.5.0 -m "Release 1.5.0"
+git push origin v1.5.0
 ```
 
-The `v1.0.0` tag triggers deploy to `tags/1.0.0` and updates `trunk` on WordPress.org SVN.
+The `v1.5.0` tag triggers the deploy: it publishes `tags/1.5.0`, updates `trunk`, and copies `assets/` to SVN `assets/`. The workflow first checks that the tag equals the plugin header, `COOPBOLO_VERSION` and the readme Stable tag, and that a fresh build doesn't change `build/`; either mismatch stops it before anything is uploaded. Approval came 2026-10-30 (SVN empty until the first tag).
 
 ## 6. Directory assets **(you)**
 
-> **Check before the first tag:** the PNGs live in `assets/` (excluded from the ZIP by `.distignore`). The 10up deploy action reads directory art from `.wordpress-org/` by default (`ASSETS_DIR`), and `deploy.yml` doesn't override it. Either set `ASSETS_DIR: assets` in the workflow env or move the files. `README.md` already describes `.wordpress-org/`.
 
-Before or shortly after launch, add PNGs under `assets/` (see `assets/README.md`):
+Directory images live in `assets/` (notes in `docs/wporg-assets/README.md`). `deploy.yml` sets `ASSETS_DIR: assets`, so the whole folder becomes SVN `assets/`; keep nothing else in it. Regenerate the banner and icon with `scripts/generate-wporg-assets.py` and the screenshots with `scripts/wporg-screenshots/` (fictional demo brands):
 
 - `banner-772x250.png`
 - `icon-256x256.png`

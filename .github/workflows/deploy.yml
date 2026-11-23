@@ -1,5 +1,9 @@
 name: Deploy to WordPress.org
 
+# Pushing a v* tag publishes that version to the WordPress.org plugin directory.
+# Needs repository secrets SVN_USERNAME and SVN_PASSWORD (WordPress.org SVN password,
+# not the account password). The tag must match the plugin header and readme Stable tag.
+
 on:
   push:
     tags:
@@ -13,6 +17,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check tag matches plugin version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          header="$(sed -n 's/^ \* Version:[[:space:]]*//p' cooper-bold-logo-wrangler.php | tr -d '[:space:]')"
+          stable="$(sed -n 's/^Stable tag:[[:space:]]*//p' readme.txt | tr -d '[:space:]')"
+          constant="$(sed -n "s/^define( 'COOPBOLO_VERSION', '\([^']*\)' );/\1/p" cooper-bold-logo-wrangler.php)"
+          echo "tag=$tag header=$header stable=$stable constant=$constant"
+          if [ "$tag" != "$header" ] || [ "$tag" != "$stable" ] || [ "$tag" != "$constant" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match the plugin header, readme Stable tag, and COOPBOLO_VERSION."
+            exit 1
+          fi
+
       - name: Install Node dependencies
         uses: actions/setup-node@v4
         with:
@@ -22,8 +38,13 @@ jobs:
       - name: Build block and frontend assets
         run: npm ci && npm run build
 
+      - name: Fail if the build changed tracked files
+        run: git diff --exit-code -- build/
+
       - name: WordPress.org plugin deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
         env:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SLUG: cooper-bold-logo-wrangler
+          ASSETS_DIR: assets

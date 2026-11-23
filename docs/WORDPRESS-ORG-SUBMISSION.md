@@ -84,7 +84,7 @@ The tag triggers deploy to `tags/1.2.12` and updates `trunk` on WordPress.org SV
 
 ## 6. Directory assets
 
-PNG files live in `assets/` (see `assets/README.md`). They deploy to the SVN **`assets/`** directory (sibling to `trunk/`), not inside the plugin ZIP. The deploy action uploads them when present.
+PNG files live in `assets/` (see `docs/wporg-assets/README.md`); `deploy.yml` sets `ASSETS_DIR: assets`. They deploy to the SVN **`assets/`** directory (sibling to `trunk/`), not inside the plugin ZIP. The deploy action uploads them when present.
 
 Replace placeholders with design-approved screenshots before promoting the plugin page, if desired.
 
