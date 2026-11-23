@@ -1,0 +1,25 @@
+wiki/gotchas.md
+  s_9889166accae25::t_89fd946d3ee01f 56
+wiki/guides/wordpress-org-submission.md
+  s_9889166accae25::t_d0409612154f5f 109-124
+wiki/log.md
+  s_9889166accae25::t_5a24a82b329572 234-237
+.github/workflows/update-listing.yml
+  s_9889166accae25::t_41b7bde7c56614 1-41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7ce2b0e0a5f802903c293dcbf353b0d70b90b6e6",
+  "prompts": {},
+  "sessions": {
+    "s_9889166accae25": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2f65879d-aee4-4fde-aafb-9267abd5104d",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    }
+  }
+}
