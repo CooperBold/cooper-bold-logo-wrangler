@@ -5,8 +5,8 @@ summary: The RapidSOS Bricks site that the plugin was built for, which version i
 status: active
 created: 2026-10-19
 updated: 2026-11-23
-last_verified: 2026-11-08
-sources: [docs/RAPIDSOS-DEPLOY.md, "https://app.notion.com/p/37afb6901a688069a9ebef05fe326252", "RapidSOS repo wiki/sources/site-code-audit-2026-08-13.md", "RapidSOS repo deploy/wordpress/logo-soup/README.md", "commit a5bc12b"]
+last_verified: 2026-11-23
+sources: [docs/RAPIDSOS-DEPLOY.md, "https://app.notion.com/p/37afb6901a688069a9ebef05fe326252", "RapidSOS repo wiki/sources/site-code-audit-2026-08-13.md", "RapidSOS repo deploy/wordpress/logo-soup/README.md", "commit a5bc12b", docs/rapidsos-upgrade-from-1.2.sh, "branch fix/migrate-1-2-meta"]
 tags: [rapidsos, bricks, cloudways, client-site]
 ---
 
