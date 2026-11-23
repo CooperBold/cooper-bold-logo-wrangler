@@ -1,0 +1,21 @@
+wiki/index.md
+  s_9889166accae25::t_5c4a7fd9ebfbfe 17
+wiki/log.md
+  s_9889166accae25::t_e7b5adb3403aa2 230-233
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cf0bc6c82fa13ced7c5b6cf909dd27f766fe8f55",
+  "prompts": {},
+  "sessions": {
+    "s_9889166accae25": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2f65879d-aee4-4fde-aafb-9267abd5104d",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    }
+  }
+}
