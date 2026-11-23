@@ -21,13 +21,15 @@ final class COOPBOLO_Collections {
 	public const LEGACY_POST_TYPE = 'cb_logo_collection';
 	public const META_LOGOS    = '_coopbolo_logos';
 	public const META_SETTINGS = '_coopbolo_settings';
-	/** @var list<string> 1.3.x meta keys, still read until the collection is next saved. */
+	/** @var list<string> 1.3.x, then 1.2.x meta keys, still read until the collection is next saved. */
 	public const META_LOGOS_LEGACY_KEYS = array(
 		'_cb_lw_logos',
+		'_cb_logo_soup_logos',
 	);
-	/** @var list<string> 1.3.x settings meta keys, still read until the collection is next saved. */
+	/** @var list<string> 1.3.x, then 1.2.x settings meta keys, still read until the collection is next saved. */
 	public const META_SETTINGS_LEGACY_KEYS = array(
 		'_cb_lw_settings',
+		'_cb_logo_soup_settings',
 	);
 	public const SCHEMA_OPTION  = 'coopbolo_schema_version';
 	public const SCHEMA_VERSION = 1;
@@ -64,7 +66,8 @@ final class COOPBOLO_Collections {
 	/**
 	 * Move collections saved through 1.3.4 to the coopbolo_ post type and copy their meta to the new keys.
 	 *
-	 * Old `_cb_lw_*` keys stay until the collection is next saved, so a rollback to 1.3.4
+	 * Meta comes from the newest legacy key present (1.3.x, then 1.2.x).
+	 * Old keys stay until the collection is next saved, so a rollback to 1.3.4
 	 * only needs the post type changed back. Uses core APIs so object caches stay valid.
 	 * Safe to run more than once.
 	 *
@@ -91,8 +94,8 @@ final class COOPBOLO_Collections {
 			if ( self::LEGACY_POST_TYPE !== get_post_type( $post_id ) ) {
 				continue;
 			}
-			self::copy_meta_key( $post_id, '_cb_lw_logos', self::META_LOGOS );
-			self::copy_meta_key( $post_id, '_cb_lw_settings', self::META_SETTINGS );
+			self::copy_meta_key( $post_id, self::META_LOGOS_LEGACY_KEYS, self::META_LOGOS );
+			self::copy_meta_key( $post_id, self::META_SETTINGS_LEGACY_KEYS, self::META_SETTINGS );
 			if ( set_post_type( $post_id, self::POST_TYPE ) ) {
 				++$result['moved'];
 			} else {
@@ -104,22 +107,25 @@ final class COOPBOLO_Collections {
 	}
 
 	/**
-	 * Copy an array meta value to its new key unless the new key already exists.
+	 * Copy the first array meta value found under the old keys to its new key, unless the new key already exists.
 	 *
-	 * @param int    $post_id Post ID.
-	 * @param string $old_key Meta key written through 1.3.4.
-	 * @param string $new_key Current meta key.
+	 * @param int          $post_id  Post ID.
+	 * @param list<string> $old_keys Older meta keys, newest first.
+	 * @param string       $new_key  Current meta key.
 	 */
-	private static function copy_meta_key( int $post_id, string $old_key, string $new_key ): void {
+	private static function copy_meta_key( int $post_id, array $old_keys, string $new_key ): void {
 		if ( metadata_exists( 'post', $post_id, $new_key ) ) {
 			return;
 		}
-		$value = get_post_meta( $post_id, $old_key, true );
-		if ( ! is_array( $value ) ) {
+		foreach ( $old_keys as $old_key ) {
+			$value = get_post_meta( $post_id, $old_key, true );
+			if ( ! is_array( $value ) ) {
+				continue;
+			}
+			// update_post_meta() unslashes its value; slash first so stored text survives unchanged.
+			update_post_meta( $post_id, $new_key, wp_slash( $value ) );
 			return;
 		}
-		// update_post_meta() unslashes its value; slash first so stored text survives unchanged.
-		update_post_meta( $post_id, $new_key, wp_slash( $value ) );
 	}
 
 	/**

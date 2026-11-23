@@ -239,3 +239,7 @@ Branch `chore/listing-updates` adds `update-listing.yml` (10up asset-update acti
 ## [2026-11-23] release | 1.5.1: Cooper Bold branding and new description
 
 Nicholas approved a new icon and banner built from the cooperbold.com wordmark and "C" favicon (brand colors #111111, #D6C2AC, #8481B8, #72DFB5; Inter), a rewritten short and full description, an FAQ answer that matches the scrolling carousel, and `https://cooperbold.com` as the plugin homepage (`Plugin URI`). Art now comes from `scripts/wporg-assets/compose.js`; the old placeholder generator is gone. No code changes. See [[wordpress-org-submission]].
+
+## [2026-11-23] fix | 1.5.2: 1.2.x collections keep their logos
+
+Upgrade test on a local copy of RapidSOS staging data (1.2.11 → 1.5.1) showed both logo sections empty: 1.4.0 had dropped the `_cb_logo_soup_*` fallback because RapidSOS was not going to update ([[0008-remove-old-product-names]]). 1.5.2 makes those keys legacy sources again (migration copy and read fallback); no old names come back. The site still needs one-time content and CSS renames, scripted in `docs/rapidsos-upgrade-from-1.2.sh`; tested path and results in [[rapidsos-site]].

@@ -301,6 +301,91 @@ final class COOPBOLO_Collections_Test extends TestCase {
 		$this->assertSame( COOPBOLO_Collections::LEGACY_POST_TYPE, $GLOBALS['cb_test_posts'][9]->post_type );
 	}
 
+	public function test_migrate_copies_1_2_x_meta_when_no_newer_keys(): void {
+		$logos = array( array( 'url' => 'https://example.com/soup.png', 'alt' => 'Soup era' ) );
+		$this->register_post( 7, COOPBOLO_Collections::LEGACY_POST_TYPE );
+		$GLOBALS['cb_test_post_meta'][7] = array(
+			'_cb_logo_soup_logos'    => $logos,
+			'_cb_logo_soup_settings' => array( 'gap' => 24 ),
+		);
+
+		$result = COOPBOLO_Collections::migrate_legacy_data();
+
+		$this->assertSame( array( 'moved' => 1, 'failed' => 0 ), $result );
+		$this->assertSame( $logos, $GLOBALS['cb_test_post_meta'][7][ COOPBOLO_Collections::META_LOGOS ] );
+		$this->assertSame( array( 'gap' => 24 ), $GLOBALS['cb_test_post_meta'][7][ COOPBOLO_Collections::META_SETTINGS ] );
+	}
+
+	public function test_migrate_prefers_1_3_x_meta_over_1_2_x(): void {
+		$newer = array( array( 'url' => 'https://example.com/lw.png' ) );
+		$this->register_post( 7, COOPBOLO_Collections::LEGACY_POST_TYPE );
+		$GLOBALS['cb_test_post_meta'][7] = array(
+			'_cb_lw_logos'        => $newer,
+			'_cb_logo_soup_logos' => array( array( 'url' => 'https://example.com/soup.png' ) ),
+		);
+
+		COOPBOLO_Collections::migrate_legacy_data();
+
+		$this->assertSame( $newer, $GLOBALS['cb_test_post_meta'][7][ COOPBOLO_Collections::META_LOGOS ] );
+	}
+
+	public function test_1_2_x_meta_renders_after_post_type_already_moved(): void {
+		// A site that went straight from 1.2.x to 1.4.0-1.5.1: post type moved, meta never copied.
+		$post = $this->make_post(
+			17,
+			'soup-partners',
+			array(
+				'_cb_logo_soup_logos'    => array(
+					array( 'url' => 'https://example.com/a.svg', 'alt' => 'A' ),
+					array( 'url' => 'https://example.com/b.svg', 'alt' => 'B' ),
+				),
+				'_cb_logo_soup_settings' => array( 'gap' => 40 ),
+			)
+		);
+
+		$attrs = COOPBOLO_Collections::build_attributes_from_post( $post );
+
+		$this->assertNotNull( $attrs );
+		$this->assertCount( 2, $attrs['logos'] );
+		$this->assertSame( 40, $attrs['gap'] );
+	}
+
+	public function test_migrate_skips_non_array_1_3_x_meta_for_1_2_x(): void {
+		$logos = array( array( 'url' => 'https://example.com/soup.png' ) );
+		$this->register_post( 7, COOPBOLO_Collections::LEGACY_POST_TYPE );
+		$GLOBALS['cb_test_post_meta'][7] = array(
+			'_cb_lw_logos'        => false,
+			'_cb_logo_soup_logos' => $logos,
+		);
+
+		COOPBOLO_Collections::migrate_legacy_data();
+
+		$this->assertSame( $logos, $GLOBALS['cb_test_post_meta'][7][ COOPBOLO_Collections::META_LOGOS ] );
+	}
+
+	public function test_save_drops_1_2_x_meta_so_an_empty_save_stays_empty(): void {
+		$post = $this->make_post(
+			18,
+			'saved-partners',
+			array(
+				'_cb_logo_soup_logos'    => array( array( 'url' => 'https://example.com/old.svg' ) ),
+				'_cb_logo_soup_settings' => array( 'gap' => 40 ),
+			)
+		);
+		$instance = ( new ReflectionClass( COOPBOLO_Collections::class ) )->newInstanceWithoutConstructor();
+		$_POST    = array( 'coopbolo_collection_nonce' => 'valid' );
+
+		try {
+			$instance->save_post( 18, $post );
+		} finally {
+			$_POST = array();
+		}
+
+		$this->assertArrayNotHasKey( '_cb_logo_soup_logos', $GLOBALS['cb_test_post_meta'][18] );
+		$this->assertArrayNotHasKey( '_cb_logo_soup_settings', $GLOBALS['cb_test_post_meta'][18] );
+		$this->assertSame( array(), COOPBOLO_Collections::get_logos_for_post( 18 ) );
+	}
+
 	public function test_unmigrated_cb_lw_meta_still_renders(): void {
 		$GLOBALS['cb_test_post_meta'][5] = array(
 			'_cb_lw_logos' => array( array( 'url' => 'https://example.com/logo.png' ) ),

@@ -265,6 +265,26 @@ if ( ! function_exists( 'delete_post_meta' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wp_verify_nonce' ) ) {
+	/**
+	 * @param string $nonce  Nonce.
+	 * @param string $action Action.
+	 */
+	function wp_verify_nonce( $nonce, $action = '' ): bool {
+		return 'valid' === $nonce && '' !== $action;
+	}
+}
+
+if ( ! function_exists( 'current_user_can' ) ) {
+	/**
+	 * @param string $capability Capability.
+	 */
+	function current_user_can( $capability, ...$args ): bool {
+		unset( $capability, $args );
+		return true;
+	}
+}
+
 if ( ! function_exists( 'get_posts' ) ) {
 	/**
 	 * @param array<string, mixed> $args Query args.
