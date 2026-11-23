@@ -1,0 +1,25 @@
+AI_RUNBOOK.md
+  s_9889166accae25::t_03ec108e5620e9 14,24-25,43,126
+AI_SESSION_MEMORY.md
+  s_9889166accae25::t_048cd85fbd8199 117-130
+wiki/decisions/0009-react-free-frontend.md
+  s_9889166accae25::t_3d314586a5a13e 38-41
+wiki/log.md
+  s_9889166accae25::t_a005abbc2f38da 222-225
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "161fd9d4508940c154bc6bf65600410901043e64",
+  "prompts": {},
+  "sessions": {
+    "s_9889166accae25": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2f65879d-aee4-4fde-aafb-9267abd5104d",
+        "model": "unknown"
+      },
+      "human_author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    }
+  }
+}
