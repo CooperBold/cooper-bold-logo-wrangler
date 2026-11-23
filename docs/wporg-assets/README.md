@@ -15,4 +15,4 @@ WordPress.org accepts PNG or JPG. Filenames must match the patterns above.
 
 ## Where things come from
 
-`banner-placeholder.svg` and `icon-placeholder.svg` (in this folder) are design references. `assets/` holds only what WordPress.org shows, because the deploy copies the whole folder: the banner and icon come from `scripts/generate-wporg-assets.py`, and the screenshots are real captures (`scripts/wporg-screenshots/`).
+`banner-placeholder.svg` and `icon-placeholder.svg` (in this folder) are design references. `assets/` holds only what WordPress.org shows, because the deploy copies the whole folder: the banner and icon come from `scripts/wporg-assets/compose.js` (Cooper Bold wordmark and "C" from cooperbold.com), and the screenshots are real captures (`scripts/wporg-screenshots/`).

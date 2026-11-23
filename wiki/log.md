@@ -235,3 +235,7 @@ Nicholas added the `SVN_USERNAME` / `SVN_PASSWORD` secrets; tag `v1.5.0` (commit
 ## [2026-11-23] session | listing updates without a release (branch)
 
 Branch `chore/listing-updates` adds `update-listing.yml` (10up asset-update action, `IGNORE_OTHER_FILES: true`): pushing `readme.txt` or `assets/` changes to `main` updates the WordPress.org listing without a new version. The homepage link (`Plugin URI`) still needs a release. Table of what lives where in [[wordpress-org-submission]].
+
+## [2026-11-23] release | 1.5.1: Cooper Bold branding and new description
+
+Nicholas approved a new icon and banner built from the cooperbold.com wordmark and "C" favicon (brand colors #111111, #D6C2AC, #8481B8, #72DFB5; Inter), a rewritten short and full description, an FAQ answer that matches the scrolling carousel, and `https://cooperbold.com` as the plugin homepage (`Plugin URI`). Art now comes from `scripts/wporg-assets/compose.js`; the old placeholder generator is gone. No code changes. See [[wordpress-org-submission]].

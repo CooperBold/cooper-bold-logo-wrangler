@@ -12,4 +12,4 @@ NODE_PATH=node_modules node scripts/wporg-screenshots/shoot.js <page id from see
 cp /tmp/shots/editor.png assets/screenshot-1.png; cp /tmp/shots/frontend.png assets/screenshot-2.png
 ```
 
-Banner and icon: `python3 scripts/generate-wporg-assets.py`.
+Banner and icon: `NODE_PATH=node_modules node scripts/wporg-assets/compose.js` (from the Cooper Bold logo files in that folder).

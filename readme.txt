@@ -4,29 +4,31 @@ Tags: logo, logos, partners, brands, block
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Display partner and client logos in a balanced, harmonious strip.
+Mismatched partner logos, balanced into one clean row. Logo Wrangler evens out size, weight and alignment, in a strip or a scrolling carousel.
 
 == Description ==
 
-Cooper Bold Logo Wrangler is a WordPress plugin that wraps the open-source [logo-soup](https://github.com/sanity-labs/logo-soup) library from Sanity Labs. It analyzes each logo image and normalizes visual weight, density, and alignment so mixed brand assets look intentional together — not a scrolling marquee.
+Partner and client logos never arrive in matching files. One is a wide wordmark, one is a chunky square icon, one has a huge white border, one is thin and pale. Put them side by side and the row looks messy, no matter how carefully you size them.
+
+Logo Wrangler fixes that automatically. It looks at each logo in the browser and sizes it by how big it *looks*, not how big the file is. Wide logos come down, heavy ones calm down, empty borders are trimmed, and every logo sits on the same visual center line.
 
 **Features**
 
-* Gutenberg block with live editor preview
-* **Logo Collections** admin UI — build reusable logo sets with Media Library picker
-* `[logo_wrangler]` shortcode for classic content areas
-* Reference collections by slug (`collection="homepage-partners"`) or ID (`id="123"`)
-* Media library integration for logo selection
-* Tunable normalization controls (size, density, contrast, alignment)
-* Frontend assets load only when the block or shortcode is present on the page
+* A block with a live preview in the editor
+* **Logo Collections**: build a set of logos once from your Media Library, then reuse it anywhere
+* A `[logo_wrangler]` shortcode for page builders, widgets and the classic editor
+* Two layouts: a static strip, or a continuously scrolling carousel
+* Fine-tuning for size, spacing, density, contrast and alignment
+* Optional links on each logo
+* Lightweight: its scripts load only on pages that show logos
 
 **Credits**
 
-Logo normalization powered by [@sanity-labs/logo-soup](https://www.npmjs.com/package/@sanity-labs/logo-soup) (MIT). Built by [Cooper Bold](https://cooperbold.com). The WordPress plugin is GPL-2.0-or-later.
+Logo normalization is powered by the open-source [@sanity-labs/logo-soup](https://www.npmjs.com/package/@sanity-labs/logo-soup) library (MIT). Built by [Cooper Bold](https://cooperbold.com). The plugin is GPL-2.0-or-later.
 
 == Source code ==
 
@@ -58,9 +60,9 @@ Rebuild compiled assets with `@wordpress/scripts`:
 
 == Frequently Asked Questions ==
 
-= Does this animate logos in a marquee? =
+= Can the logos scroll? =
 
-No. Cooper Bold Logo Wrangler normalizes logo sizing and alignment in a static strip.
+Yes. Choose the carousel layout and the logos scroll continuously. The default strip layout stays still.
 
 = Which shortcode should I use? =
 
@@ -88,6 +90,11 @@ There is no built-in limit. Add as many logos as your collection or block needs;
 2. Frontend — eight logo files of different shapes and padding, balanced into one even strip.
 
 == Changelog ==
+
+= 1.5.1 =
+* New directory icon and banner, a rewritten description, and an FAQ answer that matches the scrolling carousel
+* Plugin homepage is now https://cooperbold.com
+* No code changes
 
 = 1.5.0 =
 * The frontend script no longer uses React. Pages that show a logo strip or carousel stop loading WordPress's React scripts (about 53 KB gzipped)
@@ -254,6 +261,9 @@ There is no built-in limit. Add as many logos as your collection or block needs;
 * Sanitized shortcode and block attributes
 
 == Upgrade Notice ==
+
+= 1.5.1 =
+Listing and homepage update only; no code changes.
 
 = 1.5.0 =
 Lighter pages: the frontend no longer loads React. Markup and CSS classes are unchanged.

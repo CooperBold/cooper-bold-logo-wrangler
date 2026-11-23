@@ -72,7 +72,7 @@ The `v1.5.0` tag triggers the deploy: it publishes `tags/1.5.0`, updates `trunk`
 ## 6. Directory assets **(you)**
 
 
-Directory images live in `assets/` (notes in `docs/wporg-assets/README.md`). `deploy.yml` sets `ASSETS_DIR: assets`, so the whole folder becomes SVN `assets/`; keep nothing else in it. Regenerate the banner and icon with `scripts/generate-wporg-assets.py` and the screenshots with `scripts/wporg-screenshots/` (fictional demo brands):
+Directory images live in `assets/` (notes in `docs/wporg-assets/README.md`). `deploy.yml` sets `ASSETS_DIR: assets`, so the whole folder becomes SVN `assets/`; keep nothing else in it. Regenerate the banner and icon with `scripts/wporg-assets/compose.js` (Cooper Bold logo from cooperbold.com) and the screenshots with `scripts/wporg-screenshots/` (fictional demo brands):
 
 - `banner-772x250.png`
 - `icon-256x256.png`

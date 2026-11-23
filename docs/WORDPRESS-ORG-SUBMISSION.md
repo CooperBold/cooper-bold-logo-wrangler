@@ -43,7 +43,7 @@ The ZIP is written to `dist/balanced-logos-1.2.12.zip`. It respects `.distignore
 Regenerate directory PNG placeholders (optional):
 
 ```bash
-python3 scripts/generate-wporg-assets.py
+NODE_PATH=node_modules node scripts/wporg-assets/compose.js
 ```
 
 ## 3. Submit for review **(you)**
