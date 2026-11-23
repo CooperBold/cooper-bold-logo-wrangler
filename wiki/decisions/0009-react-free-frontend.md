@@ -35,6 +35,10 @@ Nicholas needed the plugin's public pages to stop loading React. `build/view.js`
 
 Captured the rendered DOM of the React build (1.4.0), then compared it with the new build on the same pages after normalizing blob URLs and Splide's moving state. Identical in all seven cases: collection strip (12 logos, crop on, links), standalone carousel, inline logos with one broken URL, all logos broken, background color with density off and a duplicate src, a 3-logo carousel with one broken logo, and a missing collection. `window.React` was undefined on the new build. The block editor and the collection preview still rendered 12 logos.
 
+## Cross-browser check (2026-11-23)
+
+Same page (12-logo strip + carousel, 1200×900, logged out), React build 1.4.0 vs 1.5.0, measured with Playwright: every logo's position and size, slide sizes, clone count, canonical DOM and scroll speed (0.9 px/frame) matched in Chromium 148, WebKit 26.4 (Safari 26.4's engine) and Firefox 150. No console errors. Firefox wraps the strip into different rows than WebKit at the same width, in both builds: a browser difference, not a regression. Not covered: a Bricks site, the Safari app itself.
+
 ## Behavior changes
 
 - A logo's link is matched by src. The React version matched by render position, so a failed logo shifted every later link by one.

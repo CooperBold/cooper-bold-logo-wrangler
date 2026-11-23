@@ -11,7 +11,7 @@
 Editors can use:
 
 - **Gutenberg block** `cooper-bold/logo-wrangler` (`src/block/`)
-- **Shortcode** `[logo_wrangler]` with matching attributes (legacy: `[balanced_logos]`, `[logo_soup]`, `[cooper-bold-logo-soup]`)
+- **Shortcode** `[logo_wrangler]` with matching attributes (the old `[logo_soup]` / `[balanced_logos]` aliases were removed in 1.4.0)
 
 ---
 
@@ -21,8 +21,8 @@ Editors can use:
 | --- | --- |
 | WordPress | 6.4+ |
 | PHP | 7.4+, `declare(strict_types=1)` |
-| JS | Block editor (`src/block/`), front-end (`src/view.js`) |
-| npm package | `@sanity-labs/logo-soup` ^1.2.2 |
+| JS | Block editor (`src/block/`, React), front-end (`src/view.js` + `src/shared/mount-soup-dom.js`, no React since 1.5.0) |
+| npm package | `@sanity-labs/logo-soup` 1.3.0 (pinned) |
 | Build | `@wordpress/scripts` → `build/index.js`, `build/view.js` |
 | AI tooling | SimpleMem, wiki, Context7, Claude Code rules in `.claude/rules/` |
 
@@ -40,7 +40,7 @@ includes/
   class-coopbolo-admin-branding.php # Admin branding CSS
 src/
   block/                           # block.json, edit.js, editor styles
-  view.js                          # Front-end logo-soup init
+  view.js                          # Front-end init (no React; mounts via shared/mount-soup-dom.js)
   shared/to-lw-props.js            # Shared editor/frontend prop sanitizer
 build/                             # Compiled assets (npm run build)
 wiki/                              # LLM wiki (Obsidian)
@@ -123,7 +123,7 @@ Pass = no errors (warnings may remain). Splide must load from `lib/splide/` only
 4. Plugin Check (above) on wp-env or staging
 5. Tag `v*` and push — see **WordPress.org submission** below
 
-**WordPress.org submission:** Full checklist in `docs/WORDPRESS-ORG-SUBMISSION.md` (plugin version **1.2.15** on `main`; confirm doc version refs). SVN secrets, directory assets. Wiki mirror: `wiki/guides/wordpress-org-submission.md`.
+**WordPress.org submission:** Full checklist in `docs/WORDPRESS-ORG-SUBMISSION.md` (plugin version **1.5.0** on `main`; WP.org last received 1.3.7). SVN secrets, directory assets. Wiki mirror: `wiki/guides/wordpress-org-submission.md`.
 
 ---
 

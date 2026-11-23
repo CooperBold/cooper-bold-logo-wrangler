@@ -114,3 +114,17 @@ Dated log for session context and handoffs.
 - **Decisions:** Pin logo-soup at 1.3.0 exact; always `console.warn` on failures (not debug-gated) so editors spot broken URLs.
 - **Risks:** WP.org review still pending; measurement values may shift slightly vs 1.2.2 (upstream redmean change).
 - **Next:** Upload v1.3.3 after 1.3.2 clears; rebuild release ZIP before upload.
+
+## 2026-11-23 — close-out
+
+- **Where:** Cooper Bold Logo Wrangler WP plugin · branch `main` · PR none (direct commits; repo renamed to `CooperBold/cooper-bold-logo-wrangler`, old URL redirects)
+- **Done:** WP.org review fixes and cleanup, 1.3.5 → 1.5.0, all on `main`:
+  - 1.3.5: `coopbolo_` / `COOPBOLO_` prefix everywhere, CPT `coopbolo_collection` + one-time migration (hardened after an adversarial gate).
+  - 1.3.6/1.3.7: `str_contains()` → `strpos()` (PHP 7.4 fatal flagged by WP.org); Auto Scroll no longer loads twice when a theme has it.
+  - CI fixed: Composer platform pinned to PHP 7.4 (lock had a PHP 8.4-only package).
+  - 1.4.0: removed old product names (`[logo_soup]`, `[balanced_logos]`, legacy blocks, `balanced-logos.php`, all `active_plugins` writes); JS events/localStorage prefixed `coopbolo-`.
+  - 1.5.0: frontend mounts without React (logo-soup engine + plain DOM); public pages drop ~53 KB gzipped of React. DOM and layout identical to the React build in Chromium, WebKit (Safari 26.4 engine) and Firefox 150.
+- **State:** 1.3.7 uploaded to WP.org 2026-10-29 with Nicholas's reply; waiting on the automated recheck. 1.4.0 and 1.5.0 are on `main`, not uploaded.
+- **Decisions:** Keep `cb-lw-*` CSS classes and `data-cb-lw` (theme/Bricks CSS targets them; the prefix rule covers PHP). Don't upload 1.5.0 mid-review: wait for the 1.3.7 recheck. RapidSOS (1.2.11) will not be upgraded.
+- **Risks:** Collections saved only in the Logo Soup era (`_cb_logo_soup_*`) render empty on 1.4.0+ until re-saved. A 3-or-fewer-logo carousel with one broken logo never starts Splide (pre-existing). `save_post` double-unslash drops backslashes in alt text (pre-existing). Not verified on a Bricks site or in the Safari app itself.
+- **Next:** When WP.org replies on 1.3.7, upload 1.5.0 (bump to 1.5.1 if anything changes) and answer any new notes.
