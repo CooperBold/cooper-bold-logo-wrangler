@@ -1,0 +1,47 @@
+build/block/block.json
+  s_0edc288e9f04a4::t_e2c9a3446615bb 5
+build/index.asset.php
+  s_0edc288e9f04a4::t_9de0ddcdbb5694 1
+build/index.js
+  s_0edc288e9f04a4::t_1aa2530d72814c 1
+cooper-bold-logo-wrangler.php
+  s_0edc288e9f04a4::t_ec08a203de05e7 6,8,29
+docs/WORDPRESS-ORG-SUBMISSION.md
+  s_0edc288e9f04a4::t_325e40483a48c9 46
+docs/wporg-assets/README.md
+  s_0edc288e9f04a4::t_4c261c44c0a5dc 18
+package-lock.json
+  s_0edc288e9f04a4::t_6516dbcd1c1084 3,9
+package.json
+  s_0edc288e9f04a4::t_51afa31e8ce0b1 3
+readme.txt
+  s_0edc288e9f04a4::t_da4fbeaf399a08 7,11,15-17,21-27,31,63,65,94-98,265-267
+scripts/wporg-assets/compose.js
+  s_0edc288e9f04a4::t_df2525d5e1a491 1-36
+scripts/wporg-assets/cooper-bold-wordmark.svg
+  s_0edc288e9f04a4::t_1904f682c815c8 1
+scripts/wporg-screenshots/README.md
+  s_0edc288e9f04a4::t_817fe9372521de 15
+src/block/block.json
+  s_0edc288e9f04a4::t_ed344fbc4b011f 5
+wiki/guides/wordpress-org-submission.md
+  s_0edc288e9f04a4::t_37f987eb341d19 75
+wiki/log.md
+  s_0edc288e9f04a4::t_26b2e3fad9e3df 238-241
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ffe7d049f0cee838f5a5abe5b0d7e80b404781d8",
+  "prompts": {},
+  "sessions": {
+    "s_0edc288e9f04a4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_0edc288e9f04a4",
+        "model": "unknown"
+      },
+      "human_author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    }
+  }
+}
