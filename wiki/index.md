@@ -14,7 +14,7 @@ tags: [meta]
 
 ## Must know
 
-- WP.org: **approved 2026-10-30** (on 1.3.7), but **nothing is published**: SVN is empty until the first `v*` tag. Publishing setup is on branch `chore/wporg-publish`; Nicholas adds the SVN secrets and pushes `v1.5.0`. [[wordpress-org-submission]] `main` is at **1.5.0** — the React-free frontend, on top of 1.4.0's removal of the old product names. Neither is uploaded yet. Nicholas uploads and replies. [[wporg-review-thread]] [[0009-react-free-frontend]]
+- WP.org: **live since 2026-11-23** at https://wordpress.org/plugins/cooper-bold-logo-wrangler/ (1.5.0). Approved 2026-10-30 on 1.3.7. Releases go out by pushing a `v*` tag from `main` (`deploy.yml`, secrets `SVN_USERNAME` / `SVN_PASSWORD` set). [[wordpress-org-submission]]
 - Public pages with a logo strip **do not load React** since 1.5.0: `build/view.js` uses the logo-soup engine and plain DOM. The editor and the collection preview still use React. Guard tests fail if React returns to the frontend bundle. [[0009-react-free-frontend]] [[gotchas]]
 - The plugin **never touches `active_plugins`** as of 1.4.0, and never add `viewScript`/`style` to `block.json`; both are WP.org/architecture rules with guard tests. [[gotchas]]
 - Four renames (Logo Soup → Balanced Logos → Logo Wrangler) were repo-wide find/replaces, so old docs misdate names. As of 1.4.0 the legacy shortcodes, blocks, and loader are **gone**; only the `cb-lw-*` CSS classes and the `_cb_lw_*` meta fallback survive. [[0003-plugin-name-cooper-bold-logo-wrangler]] [[0008-remove-old-product-names]]

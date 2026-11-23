@@ -227,3 +227,7 @@ Compared the React build (1.4.0) and the React-free build (1.5.0) in Chromium 14
 ## [2026-11-23] session | WP.org approval found; publishing set up (branch)
 
 The plugin was approved on 2026-10-30 (1.3.7); SVN is still empty, so nothing is public. Branch `chore/wporg-publish`: `deploy.yml` now sets `SLUG` and `ASSETS_DIR: assets` and refuses a tag that doesn't match the plugin version or a stale `build/`; banner and icon regenerated (they still said "Logo Soup" / "LS"); the placeholder screenshots replaced with real captures using fictional demo brands (`scripts/wporg-screenshots/`). Simulated SVN trunk matches the tested 1.5.0 ZIP file for file. Waiting on Nicholas to add the `SVN_USERNAME` / `SVN_PASSWORD` secrets and push `v1.5.0`. See [[wordpress-org-submission]].
+
+## [2026-11-23] release | 1.5.0 published to WordPress.org
+
+Nicholas added the `SVN_USERNAME` / `SVN_PASSWORD` secrets; tag `v1.5.0` (commit `2afd46e`) ran `deploy.yml` successfully (run 45264156729). SVN now has `trunk/`, `tags/1.5.0/` and the four `assets/` images; the plugin API reports version 1.5.0 and the public page answers 200. The zip WordPress.org serves has the same 48 files as the tested 1.5.0 build, with only the readme's new screenshot captions differing. See [[wordpress-org-submission]].
