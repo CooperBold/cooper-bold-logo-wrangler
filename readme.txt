@@ -4,7 +4,7 @@ Tags: logo, logos, partners, brands, block
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,6 +90,10 @@ There is no built-in limit. Add as many logos as your collection or block needs;
 2. Frontend — eight logo files of different shapes and padding, balanced into one even strip.
 
 == Changelog ==
+
+= 1.5.2 =
+* Fix: collections saved by 1.2.x keep their logos and settings after updating. 1.4.0 to 1.5.1 stopped reading the 1.2.x data, so those collections rendered nothing
+* Sites already on 1.4.0 to 1.5.1 get the logos back with no action; the data is copied to the current fields the next time the collection is saved
 
 = 1.5.1 =
 * New directory icon and banner, a rewritten description, and an FAQ answer that matches the scrolling carousel
@@ -261,6 +265,9 @@ There is no built-in limit. Add as many logos as your collection or block needs;
 * Sanitized shortcode and block attributes
 
 == Upgrade Notice ==
+
+= 1.5.2 =
+Coming from 1.2.x? Collections keep their logos. Also change [logo_soup] to [logo_wrangler] in your content and any custom CSS that targets .cb-logo-soup-* classes to .cb-lw-*.
 
 = 1.5.1 =
 Listing and homepage update only; no code changes.
