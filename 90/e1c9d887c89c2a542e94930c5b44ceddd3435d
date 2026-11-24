@@ -1,0 +1,73 @@
+build/block/block.json
+  s_03705d752a0319::t_aad4922de11ee4 5
+build/index.asset.php
+  s_03705d752a0319::t_e38a2ae23cfed1 1
+build/index.js
+  s_03705d752a0319::t_2c62c19c9d73e9 1
+cooper-bold-logo-wrangler.php
+  s_6660c5075b1662::t_1a43bec744d291 8,29
+includes/class-coopbolo-collections.php
+  s_03705d752a0319::t_d8e39096ebecf5 35-36,89,93,100-102,111-113
+includes/class-coopbolo-plugin.php
+  s_03705d752a0319::t_aa620e90cbf2c6 24-26,44-90
+package-lock.json
+  s_6660c5075b1662::t_31842ff55b5703 3,9
+package.json
+  s_6660c5075b1662::t_1cb81af0b5fa3f 3
+readme.txt
+  s_6660c5075b1662::t_fbb89bde4d49a0 7,94-97,273-275
+src/block/block.json
+  s_6660c5075b1662::t_c2644db0f71527 5
+tests/COOPBOLO_Bootstrap_Test.php
+  s_0f9f4260537860::t_1fb8bafbd0c8e4 35-36,50-51,59-65
+tests/COOPBOLO_Collections_Test.php
+  s_0f9f4260537860::t_b96905846febcc 319-330
+tests/COOPBOLO_Renderer_Test.php
+  s_0f9f4260537860::t_b55f1c7444b6bf 308-343
+wiki/decisions/0008-remove-old-product-names.md
+  s_03705d752a0319::t_19be3034167049 7,30-33
+wiki/entities/rapidsos-site.md
+  s_4a80abcbfd0be7::t_5f32f274d604bb 7-9,34,36,38-40,42-44
+wiki/log.md
+  s_03705d752a0319::t_33f981f87d5a23 7-8,245-248
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "90e1c9d887c89c2a542e94930c5b44ceddd3435d",
+  "prompts": {},
+  "sessions": {
+    "s_03705d752a0319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f3ab7f11-5104-4a1b-9229-2aa40432082c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    },
+    "s_0f9f4260537860": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1e6d7553-10d2-4bef-b8d5-5acec9ce0905",
+        "model": "unknown"
+      },
+      "human_author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    },
+    "s_4a80abcbfd0be7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63766050-983e-423f-a97d-9cee0b8379cf",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    },
+    "s_6660c5075b1662": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0e248f15-482f-48c7-9ad9-4e502b5fbedb",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    }
+  }
+}
