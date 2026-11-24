@@ -48,7 +48,7 @@ final class COOPBOLO_Bootstrap_Test extends TestCase {
 			$src = file_get_contents( $file );
 			$this->assertNotFalse( $src );
 			// The one allowed use: the 1.2.x shortcode, registered only on sites migrated from 1.2.x.
-			$src = str_replace( "public const LEGACY_SHORTCODE = 'logo_soup';", '', $src );
+			$src = (string) preg_replace( "/const LEGACY_SHORTCODE\\s*=\\s*'logo_soup'/", '', $src );
 			if ( preg_match( $pattern, $src, $m ) ) {
 				$found[ basename( $file ) ] = $m[0];
 			}

@@ -35,11 +35,11 @@ Whether staging or live has moved past 1.2.11 since 2026-08-13 is *(unverified)*
 
 What used to break, and what handles it now:
 
-1. **Shortcode.** Staging content uses `[logo_soup …]` (page 275212 and the "Logo Reel" Bricks component in `bricks_components`). 1.4.0+ registers only `[logo_wrangler]`. **1.5.3:** the migration sets `coopbolo_has_1_2_content` when a collection still has `_cb_logo_soup_logos`, and only then is `[logo_soup]` registered again. New installs never get it (the name was a WP.org complaint, [[0008-remove-old-product-names]]).
+1. **Shortcode.** Staging content uses `[logo_soup …]` (page 275212 and the "Logo Reel" Bricks component in `bricks_components`). 1.4.0+ registers only `[logo_wrangler]`. **1.5.3:** the migration (schema 2, so it also runs on sites that already updated) sets `coopbolo_has_1_2_content` when a collection still has `_cb_logo_soup_logos`, and only then is `[logo_soup]` registered again. New installs never get it (the name was a WP.org complaint, [[0008-remove-old-product-names]]).
 2. **Logo lists.** 1.4.0–1.5.1 did not read the 1.2.x meta (`_cb_logo_soup_logos` / `_settings`). **Fixed in 1.5.2:** copied on migration and read as a fallback.
 3. **CSS class names.** Bricks custom CSS targets `.cb-logo-soup-inner` (six-column grid on 275212) and `.cb-logo-soup-carousel.splide::before/::after` (Logo Reel edge fade); WPCode "Logo slider smooth scroll" checks `data-cb-logo-soup-splide`. **1.5.3:** `[logo_soup]` output gives every `cb-lw*` class a `cb-logo-soup*` twin and adds `data-cb-logo-soup-splide`.
 
-Result on the copy: grid 70 logos, six columns, 1360 px tall at 1280 px (same as 1.2.11), two columns at 375 px with no overflow; Logo Reel on all 26 pages plus the template.
+Result on the copy: grid 70 logos, six columns, 1360 px tall at 1280 px (same as 1.2.11), two columns at 375 px with no overflow; Logo Reel on all 26 pages that use it: 21 slides, scrolling, edge fade, logo sizes identical to 1.2.11.
 
 `docs/rapidsos-upgrade-from-1.2.sh` (WP-CLI rename to the current names) is now optional cleanup, not needed for the upgrade.
 
