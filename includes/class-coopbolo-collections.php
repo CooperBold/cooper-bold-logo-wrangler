@@ -32,6 +32,8 @@ final class COOPBOLO_Collections {
 		'_cb_logo_soup_settings',
 	);
 	public const SCHEMA_OPTION  = 'coopbolo_schema_version';
+	/** Set when collections from 1.2.x are migrated; turns on COOPBOLO_Plugin's 1.2.x shortcode and class names. */
+	public const HAS_1_2_CONTENT_OPTION = 'coopbolo_has_1_2_content';
 	public const SCHEMA_VERSION = 1;
 
 	/** @var COOPBOLO_Renderer|null */
@@ -84,15 +86,19 @@ final class COOPBOLO_Collections {
 			)
 		);
 
-		$result = array(
+		$result    = array(
 			'moved'  => 0,
 			'failed' => 0,
 		);
+		$saw_1_2_x = false;
 		foreach ( $post_ids as $post_id ) {
 			$post_id = (int) $post_id;
 			// A theme's pre_get_posts can rewrite this query; only touch real legacy collections.
 			if ( self::LEGACY_POST_TYPE !== get_post_type( $post_id ) ) {
 				continue;
+			}
+			if ( metadata_exists( 'post', $post_id, self::META_LOGOS_LEGACY_KEYS[1] ) ) {
+				$saw_1_2_x = true;
 			}
 			self::copy_meta_key( $post_id, self::META_LOGOS_LEGACY_KEYS, self::META_LOGOS );
 			self::copy_meta_key( $post_id, self::META_SETTINGS_LEGACY_KEYS, self::META_SETTINGS );
@@ -101,6 +107,9 @@ final class COOPBOLO_Collections {
 			} else {
 				++$result['failed'];
 			}
+		}
+		if ( $saw_1_2_x ) {
+			update_option( self::HAS_1_2_CONTENT_OPTION, 1 );
 		}
 
 		return $result;

@@ -21,6 +21,9 @@ require_once COOPBOLO_PATH . 'includes/class-coopbolo-admin-branding.php';
  */
 final class COOPBOLO_Plugin {
 
+	/** Shortcode tag used by 1.2.x content; registered only on sites migrated from 1.2.x. */
+	public const LEGACY_SHORTCODE = 'logo_soup';
+
 	private static ?COOPBOLO_Plugin $instance = null;
 	private COOPBOLO_Renderer $renderer;
 
@@ -38,6 +41,53 @@ final class COOPBOLO_Plugin {
 		$this->renderer = new COOPBOLO_Renderer();
 		add_action( 'init', array( $this, 'register_block' ) );
 		add_shortcode( 'logo_wrangler', array( $this, 'render_shortcode' ) );
+		// After the collection migration (init 20), which records whether the site ran 1.2.x.
+		add_action( 'init', array( $this, 'register_legacy_shortcode' ), 21 );
+	}
+
+	/**
+	 * On sites upgraded from 1.2.x, keep their old shortcode working so pages need no edits.
+	 */
+	public function register_legacy_shortcode(): void {
+		if ( get_option( COOPBOLO_Collections::HAS_1_2_CONTENT_OPTION ) && ! shortcode_exists( self::LEGACY_SHORTCODE ) ) {
+			add_shortcode( self::LEGACY_SHORTCODE, array( $this, 'render_legacy_shortcode' ) );
+		}
+	}
+
+	/**
+	 * Render 1.2.x shortcode content: the same output, plus the 1.2.x class names and
+	 * carousel attribute, so site CSS and scripts written for 1.2.x still match.
+	 *
+	 * @param array<string, string>|string $atts    Shortcode attributes.
+	 * @param string|null                  $content Enclosed content (unused).
+	 * @param string                       $tag     Shortcode tag name.
+	 * @return string Rendered HTML.
+	 */
+	public function render_legacy_shortcode( $atts, ?string $content = null, string $tag = self::LEGACY_SHORTCODE ): string {
+		return self::add_1_2_names( $this->render_shortcode( $atts, $content, $tag ) );
+	}
+
+	/**
+	 * Give every cb-lw* class a cb-logo-soup* twin (cb-lw-inner -> cb-logo-soup-inner, ...).
+	 *
+	 * @param string $html Rendered markup.
+	 * @return string
+	 */
+	public static function add_1_2_names( string $html ): string {
+		$html = preg_replace_callback(
+			'/\bclass="([^"]*)"/',
+			static function ( array $m ): string {
+				$classes = preg_split( '/\s+/', trim( $m[1] ) ) ?: array();
+				foreach ( $classes as $class ) {
+					if ( preg_match( '/^cb-lw(-.+)?$/', $class, $parts ) ) {
+						$classes[] = 'cb-logo-soup' . ( $parts[1] ?? '' );
+					}
+				}
+				return 'class="' . esc_attr( implode( ' ', array_unique( $classes ) ) ) . '"';
+			},
+			$html
+		) ?? $html;
+		return str_replace( ' data-cb-lw-splide="1"', ' data-cb-lw-splide="1" data-cb-logo-soup-splide="1"', $html );
 	}
 
 	/**

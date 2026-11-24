@@ -316,6 +316,18 @@ final class COOPBOLO_Collections_Test extends TestCase {
 		$this->assertSame( array( 'gap' => 24 ), $GLOBALS['cb_test_post_meta'][7][ COOPBOLO_Collections::META_SETTINGS ] );
 	}
 
+	public function test_migrate_records_1_2_x_sites_only(): void {
+		$this->register_post( 7, COOPBOLO_Collections::LEGACY_POST_TYPE );
+		$GLOBALS['cb_test_post_meta'][7] = array( '_cb_lw_logos' => array() );
+		COOPBOLO_Collections::migrate_legacy_data();
+		$this->assertFalse( get_option( COOPBOLO_Collections::HAS_1_2_CONTENT_OPTION ) );
+
+		$this->register_post( 8, COOPBOLO_Collections::LEGACY_POST_TYPE );
+		$GLOBALS['cb_test_post_meta'][8] = array( '_cb_logo_soup_logos' => array() );
+		COOPBOLO_Collections::migrate_legacy_data();
+		$this->assertSame( 1, get_option( COOPBOLO_Collections::HAS_1_2_CONTENT_OPTION ) );
+	}
+
 	public function test_migrate_prefers_1_3_x_meta_over_1_2_x(): void {
 		$newer = array( array( 'url' => 'https://example.com/lw.png' ) );
 		$this->register_post( 7, COOPBOLO_Collections::LEGACY_POST_TYPE );
