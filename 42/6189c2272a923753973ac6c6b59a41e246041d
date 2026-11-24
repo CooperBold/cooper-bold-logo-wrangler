@@ -1,0 +1,38 @@
+wiki/decisions/0007-coopbolo-prefix.md
+  h_4e91bfaac52dbc 7-9,15
+wiki/decisions/0008-remove-old-product-names.md
+  h_4e91bfaac52dbc 7-9,15,37
+wiki/decisions/0009-react-free-frontend.md
+  h_4e91bfaac52dbc 7-9,15
+wiki/entities/logo-collections.md
+  h_4e91bfaac52dbc 7-9,24,39
+wiki/entities/wordpress-plugin.md
+  h_4e91bfaac52dbc 6-7,11,22
+wiki/gotchas.md
+  h_4e91bfaac52dbc 7-9,48,60
+wiki/guides/rapidsos-deploy.md
+  h_4e91bfaac52dbc 6-7,10
+wiki/guides/wordpress-org-submission.md
+  h_4e91bfaac52dbc 10,47
+wiki/guides/wp-env-smoke-test.md
+  h_4e91bfaac52dbc 6-7,10,64
+wiki/index.md
+  h_4e91bfaac52dbc 7-9,17,62
+wiki/log.md
+  h_4e91bfaac52dbc 246-255
+wiki/overview.md
+  h_4e91bfaac52dbc 7-9,39,41
+wiki/sources/wporg-review-thread.md
+  h_4e91bfaac52dbc 7-9,36-38,53
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "426189c2272a923753973ac6c6b59a41e246041d",
+  "prompts": {},
+  "humans": {
+    "h_4e91bfaac52dbc": {
+      "author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    }
+  }
+}
