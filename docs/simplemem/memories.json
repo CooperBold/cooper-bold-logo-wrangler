@@ -416,5 +416,53 @@
     },
     "namespace": "cooper-bold-logo-wrangler-wp-plugin",
     "timestamp": 1794393051.344129
+  },
+  {
+    "id": "local_1795516266418",
+    "text": "AI Session: 2026-11-23 \u2014 close-out\n\n- **Where:** Cooper Bold Logo Wrangler WP plugin \u00b7 branch `main` \u00b7 PR none (direct commits; repo renamed to `CooperBold/cooper-bold-logo-wrangler`, old URL redirects)\n- **Done:** WP.org review fixes and cleanup, 1.3.5 \u2192 1.5.0, all on `main`:\n  - 1.3.5: `coopbolo_` / `COOPBOLO_` prefix everywhere, CPT `coopbolo_collection` + one-time migration (hardened after an adversarial gate).\n  - 1.3.6/1.3.7: `str_contains()` \u2192 `strpos()` (PHP 7.4 fatal flagged by WP.org); Auto Scroll no longer loads twice when a theme has it.\n  - CI fixed: Composer platform pinned to PHP 7.4 (lock had a PHP 8.4-only package).\n  - 1.4.0: removed old product names (`[logo_soup]`, `[balanced_logos]`, legacy blocks, `balanced-logos.php`, all `active_plugins` writes); JS events/localStorage prefixed `coopbolo-`.\n  - 1.5.0: frontend mounts without React (logo-soup engine + plain DOM); public pages drop ~53 KB gzipped of React. DOM and layout identical to the React build in Chromium, WebKit (Safari 26.4 engine) and Firefox 150.\n- **State:** 1.3.7 uploaded to WP.org 2026-10-29 with Nicholas's reply; waiting on the automated recheck. 1.4.0 and 1.5.0 are on `main`, not uploaded.\n- **Decisions:** Keep `cb-lw-*` CSS classes and `data-cb-lw` (theme/Bricks CSS targets them; the prefix rule covers PHP). Don't upload 1.5.0 mid-review: wait for the 1.3.7 recheck. RapidSOS (1.2.11) will not be upgraded.\n- **Risks:** Collections saved only in the Logo Soup era (`_cb_logo_soup_*`) render empty on 1.4.0+ until re-saved. A 3-or-fewer-logo carousel with one broken logo never starts Splide (pre-existing). `save_post` double-unslash drops backslashes in alt text (pre-existing). Not verified on a Bricks site or in the Safari app itself.\n- **Next:** When WP.org replies on 1.3.7, upload 1.5.0 (bump to 1.5.1 if anything changes) and answer any new notes.",
+    "metadata": {
+      "source": "ai_session_memory",
+      "date": "2026-11-23",
+      "session_title": "2026-11-23 \u2014 close-out",
+      "imported_by": "maintain_all_simplemem"
+    },
+    "namespace": "cooper-bold-logo-wrangler-wp-plugin",
+    "timestamp": 1795516266.4182558
+  },
+  {
+    "id": "local_1795516266475",
+    "text": "Wiki session: listing updates without a release (branch) (2026-11-23)",
+    "metadata": {
+      "type": "wiki_log",
+      "date": "2026-11-23",
+      "verb": "session",
+      "source": "maintain_all_simplemem"
+    },
+    "namespace": "cooper-bold-logo-wrangler-wp-plugin",
+    "timestamp": 1795516266.475529
+  },
+  {
+    "id": "local_1795516266532",
+    "text": "Wiki release: 1.5.1: Cooper Bold branding and new description (2026-11-23)",
+    "metadata": {
+      "type": "wiki_log",
+      "date": "2026-11-23",
+      "verb": "release",
+      "source": "maintain_all_simplemem"
+    },
+    "namespace": "cooper-bold-logo-wrangler-wp-plugin",
+    "timestamp": 1795516266.532626
+  },
+  {
+    "id": "local_1795516266591",
+    "text": "Wiki fix: 1.5.2: 1.2.x collections keep their logos (2026-11-23)",
+    "metadata": {
+      "type": "wiki_log",
+      "date": "2026-11-23",
+      "verb": "fix",
+      "source": "maintain_all_simplemem"
+    },
+    "namespace": "cooper-bold-logo-wrangler-wp-plugin",
+    "timestamp": 1795516266.5911198
   }
 ]
