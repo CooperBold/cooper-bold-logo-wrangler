@@ -1,0 +1,25 @@
+includes/class-coopbolo-collections.php
+  s_03705d752a0319::t_fa1b56603532bf 37-38,90,108,113-137
+tests/COOPBOLO_Bootstrap_Test.php
+  s_03705d752a0319::t_c9414a178311b5 51
+tests/COOPBOLO_Collections_Test.php
+  s_03705d752a0319::t_4ce972ad7d365d 331-342
+wiki/entities/rapidsos-site.md
+  s_03705d752a0319::t_c970509a296381 38,42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1529a9ee221c11548d564ac27c827799a24250f0",
+  "prompts": {},
+  "sessions": {
+    "s_03705d752a0319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f3ab7f11-5104-4a1b-9229-2aa40432082c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    }
+  }
+}
