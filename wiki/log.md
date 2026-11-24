@@ -246,3 +246,7 @@ Upgrade test on a local copy of RapidSOS staging data (1.2.11 → 1.5.1) showed 
 ## [2026-11-24] fix | 1.5.3: 1.2.x sites upgrade with a plain plugin swap
 
 `[logo_soup]` and the `cb-logo-soup*` class names come back only on sites whose collections came from 1.2.x (`coopbolo_has_1_2_content`). Updated [[rapidsos-site]].
+
+## [2026-11-24] fix | 1.5.4: old names move from the plugin to the RapidSOS site
+
+1.5.3's `[logo_soup]` and `cb-logo-soup*` support is removed; RapidSOS has the same code as a site snippet. Updated [[rapidsos-site]] and [[0008-remove-old-product-names]].

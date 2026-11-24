@@ -4,7 +4,7 @@ Tags: logo, logos, partners, brands, block
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,6 +90,10 @@ There is no built-in limit. Add as many logos as your collection or block needs;
 2. Frontend — eight logo files of different shapes and padding, balanced into one even strip.
 
 == Changelog ==
+
+= 1.5.4 =
+* Removes the 1.2.x shortcode and class-name support added in 1.5.3. The one site that needed it now keeps those names in its own code, so the plugin registers only [logo_wrangler] again
+* Collections saved by 1.2.x still keep their logos and settings (1.5.2)
 
 = 1.5.3 =
 * Sites upgrading from 1.2.x need no content edits: their old shortcode keeps working, with the 1.2.x CSS class names alongside the current ones, so custom CSS written for 1.2.x still applies
@@ -269,6 +273,9 @@ There is no built-in limit. Add as many logos as your collection or block needs;
 * Sanitized shortcode and block attributes
 
 == Upgrade Notice ==
+
+= 1.5.4 =
+Coming from 1.2.x? Collections keep their logos. Change [logo_soup] to [logo_wrangler] in your content and any custom CSS that targets .cb-logo-soup-* classes to .cb-lw-*, before or right after updating.
 
 = 1.5.3 =
 Coming from 1.2.x? Update and you're done: collections, the old shortcode, and CSS written for the old class names all keep working.

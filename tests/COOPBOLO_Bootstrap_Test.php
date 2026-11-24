@@ -32,8 +32,7 @@ final class COOPBOLO_Bootstrap_Test extends TestCase {
 
 	/**
 	 * The plugin was renamed from Logo Soup / Balanced Logos. Those names (generic, or
-	 * the third-party project's) must not come back as shortcodes, blocks, or markup,
-	 * except the 1.2.x shortcode, which test_1_2_shortcode_only_on_migrated_sites covers.
+	 * the third-party project's) must not come back as shortcodes, blocks, or markup.
 	 */
 	public function test_old_product_names_are_not_registered_or_emitted(): void {
 		$root  = dirname( __DIR__ );
@@ -47,20 +46,11 @@ final class COOPBOLO_Bootstrap_Test extends TestCase {
 		foreach ( $files as $file ) {
 			$src = file_get_contents( $file );
 			$this->assertNotFalse( $src );
-			// The one allowed use: the 1.2.x shortcode, registered only on sites migrated from 1.2.x.
-			$src = (string) preg_replace( "/const LEGACY_SHORTCODE\\s*=\\s*'logo_soup'/", '', $src );
 			if ( preg_match( $pattern, $src, $m ) ) {
 				$found[ basename( $file ) ] = $m[0];
 			}
 		}
 		$this->assertSame( array(), $found );
-	}
-
-	public function test_1_2_shortcode_only_on_migrated_sites(): void {
-		$src = file_get_contents( dirname( __DIR__ ) . '/includes/class-coopbolo-plugin.php' );
-		$this->assertNotFalse( $src );
-		$this->assertSame( 1, substr_count( $src, 'add_shortcode( self::LEGACY_SHORTCODE' ) );
-		$this->assertStringContainsString( 'if ( get_option( COOPBOLO_Collections::HAS_1_2_CONTENT_OPTION ) && ! shortcode_exists( self::LEGACY_SHORTCODE ) ) {', $src );
 	}
 
 	public function test_global_functions_and_classes_use_plugin_prefix(): void {

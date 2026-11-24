@@ -27,9 +27,9 @@ tags: [wordpress-org, legacy, breaking, bootstrap]
 - Read-fallbacks for the oldest collection meta (`_cb_balanced_logos_*`, `_cb_logo_soup_*`); the `_cb_lw_*` fallback from the 1.3.x era stays.
 - JS: `fix/js-hook-prefix` renamed event names and the localStorage key to `coopbolo-*` (`coopbolo-hydrated`, `coopbolo-debug`, …) and dropped the duplicate `cb-balanced-logos-hydrated` event; `src/view.js` reads only `data-cb-lw` now.
 
-## Revisited in 1.5.3 (2026-11-24)
+## Revisited in 1.5.3, undone in 1.5.4 (2026-11-24)
 
-RapidSOS did upgrade after all. `[logo_soup]` and `cb-logo-soup*` class twins are back, but only on sites the migration marks as coming from 1.2.x (`coopbolo_has_1_2_content`); new installs still register only `[logo_wrangler]`. The guard test allows that one constant. See [[rapidsos-site]].
+1.5.3 brought `[logo_soup]` and `cb-logo-soup*` class twins back for sites migrated from 1.2.x, so RapidSOS could upgrade by swapping plugins. 1.5.4 removed them again and the guard test is strict again: RapidSOS keeps those names in its own WPCode snippet. See [[rapidsos-site]].
 
 ## What was kept
 

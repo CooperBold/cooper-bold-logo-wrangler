@@ -305,42 +305,6 @@ final class COOPBOLO_Renderer_Test extends TestCase {
 		$this->assertStringNotContainsString( 'splide__track', $html );
 	}
 
-	public function test_1_2_names_added_to_strip_markup(): void {
-		require_once COOPBOLO_PATH . 'includes/class-coopbolo-plugin.php';
-		$html = COOPBOLO_Plugin::add_1_2_names(
-			$this->renderer->render(
-				array(
-					'logos'     => array( array( 'url' => 'https://example.com/a.png', 'alt' => 'A' ) ),
-					'className' => 'extra',
-				)
-			)
-		);
-
-		$this->assertStringContainsString( 'class="cb-lw cb-lw-wrapper extra cb-logo-soup cb-logo-soup-wrapper"', $html );
-		$this->assertStringContainsString( 'class="cb-lw cb-lw-inner cb-logo-soup cb-logo-soup-inner"', $html );
-		$this->assertStringContainsString( 'data-cb-lw="', $html );
-	}
-
-	public function test_1_2_names_added_to_carousel_markup(): void {
-		require_once COOPBOLO_PATH . 'includes/class-coopbolo-plugin.php';
-		$plain = $this->renderer->render(
-			array(
-				'layout' => 'carousel',
-				'logos'  => array( array( 'url' => 'https://example.com/a.png', 'alt' => 'A' ) ),
-			)
-		);
-		$html  = COOPBOLO_Plugin::add_1_2_names( $plain );
-
-		$this->assertMatchesRegularExpression( '/class="[^"]*\bcb-lw-carousel\b[^"]*\bcb-logo-soup-carousel\b[^"]*" data-cb-lw-carousel="[^"]+" data-cb-lw-splide="1" data-cb-logo-soup-splide="1"/', $html );
-		$this->assertStringContainsString( 'cb-logo-soup-carousel-ref', $html );
-		$this->assertStringContainsString( 'cb-logo-soup-slide', $html );
-		// Only class lists and the splide flag change; attribute values and logo data stay as rendered.
-		$this->assertSame(
-			preg_replace( '/class="[^"]*"| data-cb-logo-soup-splide="1"/', '', $html ),
-			preg_replace( '/class="[^"]*"/', '', $plain )
-		);
-	}
-
 	public function test_sanitize_layout_rejects_invalid_values(): void {
 		$result = $this->renderer->sanitize_attributes(
 			array(
