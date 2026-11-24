@@ -1,0 +1,14 @@
+docs/simplemem/memories.json
+  h_4e91bfaac52dbc 419-466
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "041cd21a4ba44a44f4794fc3924a89fc829f791a",
+  "prompts": {},
+  "humans": {
+    "h_4e91bfaac52dbc": {
+      "author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    }
+  }
+}
