@@ -4,9 +4,9 @@ type: overview
 summary: Start here. Must-know facts, then one line per page.
 status: active
 created: 2026-06-12
-updated: 2026-11-10
-last_verified: 2026-11-10
-sources: []
+updated: 2026-11-23
+last_verified: 2026-11-23
+sources: [AGENTS.md, AI_RUNBOOK.md, readme.txt, .github/workflows/deploy.yml, .github/workflows/update-listing.yml, "commits a5bc12b, 403645d, ffe7d04, ea9794d, 7e5876d, 161fd9d, 2afd46e, cf0bc6c"]
 tags: [meta]
 ---
 
@@ -14,7 +14,7 @@ tags: [meta]
 
 ## Must know
 
-- WP.org: **live since 2026-11-23** at https://wordpress.org/plugins/cooper-bold-logo-wrangler/ (1.5.0). Approved 2026-10-30 on 1.3.7. Releases go out by pushing a `v*` tag from `main` (`deploy.yml`, secrets `SVN_USERNAME` / `SVN_PASSWORD` set). [[wordpress-org-submission]]
+- WP.org: **live since 2026-11-23** at https://wordpress.org/plugins/cooper-bold-logo-wrangler/ (1.5.0). Approved 2026-10-30 on 1.3.7. Releases go out by pushing a `v*` tag from `main` (`deploy.yml`, secrets `SVN_USERNAME` / `SVN_PASSWORD` set); listing text and images update from `readme.txt` / `assets/` pushes to `main` via `update-listing.yml`. `main` is at **1.5.2** (1.2.x collections keep their logos + 2 PHPUnit follow-ups in `7e5876d`), built and verified but not uploaded. [[wordpress-org-submission]]
 - Public pages with a logo strip **do not load React** since 1.5.0: `build/view.js` uses the logo-soup engine and plain DOM. The editor and the collection preview still use React. Guard tests fail if React returns to the frontend bundle. [[0009-react-free-frontend]] [[gotchas]]
 - The plugin **never touches `active_plugins`** as of 1.4.0, and never add `viewScript`/`style` to `block.json`; both are WP.org/architecture rules with guard tests. [[gotchas]]
 - Four renames (Logo Soup → Balanced Logos → Logo Wrangler) were repo-wide find/replaces, so old docs misdate names. As of 1.4.0 the legacy shortcodes, blocks, and loader are **gone**; only the `cb-lw-*` CSS classes and the `_cb_lw_*` meta fallback survive. [[0003-plugin-name-cooper-bold-logo-wrangler]] [[0008-remove-old-product-names]]
@@ -59,7 +59,7 @@ tags: [meta]
 
 ## Sources
 
-- [[wporg-review-thread]] — WP.org review emails, 2026-06-26 → 2026-11-09
+- [[wporg-review-thread]] — WP.org review emails, 2026-06-26 → 2026-11-23
 - [[notion-logo-soup-plugin-task]] — the Notion task that started the plugin, plus the naming discussion
 - [[sar-review]] — 2026-06-12 Spec-Attack-Repair run that chose the architecture
 - [[adversarial-review]] — 2026-06-13 adversarial review: fixes, false positives, deferred work

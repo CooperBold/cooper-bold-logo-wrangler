@@ -3,11 +3,11 @@ title: RapidSOS deploy (Cooper Bold Logo Wrangler)
 type: guide
 summary: Build the ZIP, install on RapidSOS Cloudways staging, wire collections into Bricks (strip or carousel), purge caches, roll back.
 created: 2026-06-17
-updated: 2026-11-08
-last_verified: 2026-11-08
+updated: 2026-11-23
+last_verified: 2026-11-23
 tags: [wordpress, deploy, cloudways, bricks, shortcode]
 aliases: [rapidsos-deploy]
-sources: [docs/RAPIDSOS-DEPLOY.md, includes/class-coopbolo-renderer.php, "commit a5bc12b"]
+sources: [docs/RAPIDSOS-DEPLOY.md, docs/rapidsos-upgrade-from-1.2.sh, includes/class-coopbolo-renderer.php, "commits a5bc12b, ea9794d, 7e5876d"]
 status: active
 ---
 

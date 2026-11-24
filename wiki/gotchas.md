@@ -4,9 +4,9 @@ type: overview
 summary: Known traps. Check here after a repeated failure.
 status: active
 created: 2026-10-19
-updated: 2026-11-10
-last_verified: 2026-11-10
-sources: [AGENTS.md, AI_SESSION_MEMORY.md, AI_RUNBOOK.md, readme.txt, .wp-env.json, .distignore, .github/workflows/deploy.yml, includes/class-coopbolo-collections.php, includes/class-coopbolo-assets.php, src/view.js, src/shared/mount-soup-dom.js, "commits a5bc12b, 096d507, 1f7112d, 403645d"]
+updated: 2026-11-23
+last_verified: 2026-11-23
+sources: [AGENTS.md, AI_SESSION_MEMORY.md, AI_RUNBOOK.md, readme.txt, .wp-env.json, .distignore, .github/workflows/deploy.yml, includes/class-coopbolo-collections.php, includes/class-coopbolo-assets.php, docs/rapidsos-upgrade-from-1.2.sh, src/view.js, src/shared/mount-soup-dom.js, tests/COOPBOLO_Collections_Test.php, "commits a5bc12b, 096d507, 1f7112d, 403645d, ea9794d, 7e5876d, 161fd9d"]
 tags: [gotchas]
 ---
 
@@ -45,7 +45,7 @@ One line each: the trap, then the fix or the page with details.
 ## Releases and environments
 
 - **RapidSOS 1.2.11 → 1.3.x is not a drop-in.** It means a new folder, no loader for the old file, and a new REST route. Going to 1.4.x also means the legacy shortcodes and blocks are gone, so old content must be updated to `[logo_wrangler]`. See [[rapidsos-site]].
-- **1.3.7 is the version on WP.org** (uploaded 2026-10-29, awaiting the automated recheck). It carries the `coopbolo_` prefix from 1.3.5 plus the PHP 7.4 and Auto Scroll fixes; `main` is at 1.5.0 and is not uploaded. See [[wporg-review-thread]], [[0007-coopbolo-prefix]], [[0008-remove-old-product-names]], [[0009-react-free-frontend]].
+- **1.5.0 is the version on WordPress.org** (uploaded 2026-11-23; deployed by the `v1.5.0` tag → `.github/workflows/deploy.yml` after the 2026-10-30 SVN approval). It carries the `coopbolo_` prefix from 1.3.5, the PHP 7.4 and Auto Scroll fixes from 1.3.6/1.3.7, the 1.4.0 removal of old product names and `active_plugins` writes, and the 1.5.0 React-free frontend. `main` is at **1.5.2** (1.2.x collection fix + 2 PHPUnit follow-ups in `7e5876d`), built and verified but **not uploaded**. See [[wporg-review-thread]], [[0007-coopbolo-prefix]], [[0008-remove-old-product-names]], [[0009-react-free-frontend]], [[rapidsos-site]].
 - **Check the ZIP's top level before uploading.** `.distignore` must list every new dev folder; `.claude/` and `.wp-env.override.json` leaked into the first 1.3.4 build. As of 1.4.0 expect only `LICENSE admin build cooper-bold-logo-wrangler.php includes lib package-lock.json package.json readme.txt src` (no `balanced-logos.php` — it was deleted).
 - **No PHP 8-only string or array functions in plugin code.** The plugin supports PHP 7.4 (`Requires PHP: 7.4`), and WordPress does not polyfill `str_contains()`. The Auto Scroll duplicate check used it until 1.3.6, which switched to `strpos()`; a guard test fails if one comes back. See [[carousel-and-splide]].
 - **A theme that already loads Splide Auto Scroll must not get a second copy.** The plugin finds another handle by `src` and defers to it; `reconcile_autoscroll()` settles it late on `wp_print_footer_scripts`, because block themes render content before `wp_enqueue_scripts`. Since 1.3.7. See [[carousel-and-splide]].
@@ -57,7 +57,7 @@ One line each: the trap, then the fix or the page with details.
 - **README says a GitHub Release also deploys**; `deploy.yml` triggers only on `v*` tag pushes.
 - **wp-env breaks on paths with spaces.** `.wp-env.json` mounts the `cooper-bold-logo-wrangler-wp-plugin` symlink, and `WP_ENV_CORE` must be a local core checkout under `$HOME` (shallow clone fails `index-pack`). See [[wp-env-smoke-test]].
 - **wp-env fails to build on PHP 7.4** (`apt-get install $PHPIZE_DEPS` exits 100). Put `{"phpVersion":"8.2"}` in the gitignored `.wp-env.override.json` (2026-10-21).
-- **`AI_RUNBOOK.md` is partly stale.** It still lists the three legacy shortcodes, says the plugin is version **1.2.15**, and lists logo-soup `^1.2.2` (pinned `1.3.0`). Trust the code and `package.json`.
+- **`AI_RUNBOOK.md` is the source of truth for repo layout.** It was updated in commit `161fd9d` (2026-11-23 close-out) to drop the three legacy shortcodes, pin the plugin at the current `main` version, and list logo-soup `1.3.0`. Trust the runbook; older wiki pages that quote its old numbers are history.
 
 ## Related
 

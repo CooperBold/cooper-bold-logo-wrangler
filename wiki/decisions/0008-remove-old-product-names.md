@@ -5,14 +5,14 @@ summary: 1.4.0 (commit a5bc12b, 2026-10-30) deletes the last "Logo Soup"/"Balanc
 status: active
 created: 2026-11-03
 updated: 2026-11-24
-last_verified: 2026-11-03
-sources: ["commit a5bc12b", readme.txt 1.4.0, "commit 9501c8d", tests/COOPBOLO_Bootstrap_Test.php, wiki/log.md 2026-10-29/2026-10-30, AI_SESSION_MEMORY.md]
+last_verified: 2026-11-23
+sources: ["commit a5bc12b", readme.txt 1.4.0, "commit 9501c8d", "commit 403645d", "commits ea9794d, 7e5876d", tests/COOPBOLO_Bootstrap_Test.php, wiki/log.md 2026-10-29/2026-10-30, AI_SESSION_MEMORY.md, "WP.org review thread ([[wporg-review-thread]])"]
 tags: [wordpress-org, legacy, breaking, bootstrap]
 ---
 
 # Remove old product names and the legacy loader (1.4.0)
 
-**Status:** active. Merged to `main` as **1.4.0** on 2026-10-30 (commit `a5bc12b`, branch `fix/remove-legacy-aliases` on top of `fix/js-hook-prefix` `9501c8d`). 1.4.0 was the `readme.txt` Stable tag on `main` until 1.5.0 replaced it (commit `403645d`); neither has been uploaded to WP.org yet (1.3.7 was the last upload, 2026-10-29 — see [[wporg-review-thread]]).
+**Status:** active. Merged to `main` as **1.4.0** on 2026-10-30 (commit `a5bc12b`, branch `fix/remove-legacy-aliases` on top of `fix/js-hook-prefix` `9501c8d`). 1.4.0 was the `readme.txt` Stable tag on `main` until 1.5.0 replaced it (commit `403645d`, 2026-11-09) and 1.5.2 replaced 1.5.0 (`ea9794d` + `7e5876d`, 2026-11-23). **1.5.0 was uploaded on 2026-11-23** (`v1.5.0` tag → `.github/workflows/deploy.yml`); 1.4.0 and 1.5.2 are built and verified but not on WP.org — see [[wporg-review-thread]].
 
 ## Why
 
@@ -38,7 +38,7 @@ tags: [wordpress-org, legacy, breaking, bootstrap]
 
 ## Verification (from commit `a5bc12b`)
 
-PHPUnit 62, Jest 19, build; wp-env PHP 7.4 in-place upgrade from 1.3.7 with identical strips/carousel and empty `debug.log`; a site with the old loader path still active in `active_plugins` loads normally (the missing file is just not included); Plugin Check: no errors. Two guard tests in `tests/COOPBOLO_Bootstrap_Test.php` fail if the old names or an `active_plugins` write return: `test_old_product_names_are_not_registered_or_emitted` and `test_plugin_never_rewrites_active_plugins`.
+PHPUnit 62 (was 49 on 1.3.5, then +1 in the front-matter hardening gate), Jest 19, build; wp-env PHP 7.4 in-place upgrade from 1.3.7 with identical strips/carousel and empty `debug.log`; a site with the old loader path still active in `active_plugins` loads normally (the missing file is just not included); Plugin Check: no errors. Two guard tests in `tests/COOPBOLO_Bootstrap_Test.php` fail if the old names or an `active_plugins` write return: `test_old_product_names_are_not_registered_or_emitted` and `test_plugin_never_rewrites_active_plugins`.
 
 ## Consequences
 

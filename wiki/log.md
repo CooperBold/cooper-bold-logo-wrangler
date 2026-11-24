@@ -243,6 +243,16 @@ Nicholas approved a new icon and banner built from the cooperbold.com wordmark a
 
 Upgrade test on a local copy of RapidSOS staging data (1.2.11 → 1.5.1) showed both logo sections empty: 1.4.0 had dropped the `_cb_logo_soup_*` fallback because RapidSOS was not going to update ([[0008-remove-old-product-names]]). 1.5.2 makes those keys legacy sources again (migration copy and read fallback); no old names come back. The site still needs one-time content and CSS renames, scripted in `docs/rapidsos-upgrade-from-1.2.sh`; tested path and results in [[rapidsos-site]].
 
+## [2026-11-23] update | Review follow-ups for the 1.2.x upgrade path
+
+Commit `7e5876d fix: review follow-ups for the 1.2.x upgrade path` (merged via PR #2 → `c33e871`) tightens the 1.5.2 fix and its tooling:
+
+- **`docs/rapidsos-upgrade-from-1.2.sh`** now catches `[logo_soup]` with no attributes (`[logo_soup]`) or a tag followed by a line break (`\\[logo_soup(?=[\\s\\]])`), the usage line points at `docs/rapidsos-upgrade-from-1.2.sh` (the real path), and the header spells out the **DB-backup-only rollback**, the cache purge, and the `rsos_bricks_components_backup_*` options that get the same `cb-logo-soup → cb-lw` rename so they stay restorable.
+- **Tests** (`tests/COOPBOLO_Collections_Test.php`, +2 cases; bootstrap gains `wp_verify_nonce` / `current_user_can` stubs): non-array `_cb_lw_*` meta falls through to `_cb_logo_soup_*`, and a save on a 1.2.x-only collection deletes the 1.2.x keys so an empty save stays empty. **PHPUnit now 68** (was 66 on 1.5.2 first cut; 63 on 1.5.0, 62 on 1.4.0).
+- **Wiki** ([[rapidsos-site]]): `last_verified: 2026-11-23` and sources gain `docs/rapidsos-upgrade-from-1.2.sh` and branch `fix/migrate-1-2-meta`. Updated [[wp-env-smoke-test]] to the new PHPUnit count.
+
+No new decisions. The merge fast-forwarded `main`; `git status` is clean.
+
 ## [2026-11-24] fix | 1.5.3: 1.2.x sites upgrade with a plain plugin swap
 
 `[logo_soup]` and the `cb-logo-soup*` class names come back only on sites whose collections came from 1.2.x (`coopbolo_has_1_2_content`). Updated [[rapidsos-site]].

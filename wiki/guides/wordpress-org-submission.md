@@ -7,7 +7,7 @@ updated: 2026-11-23
 last_verified: 2026-11-23
 tags: [wordpress, release, deploy, svn, github-actions]
 aliases: [wp-org-submit, release-plugin]
-sources: [docs/WORDPRESS-ORG-SUBMISSION.md, README.md, .github/workflows/deploy.yml, readme.txt, "commits a5bc12b, 3b97d49, 403645d"]
+sources: [docs/WORDPRESS-ORG-SUBMISSION.md, README.md, .github/workflows/deploy.yml, .github/workflows/update-listing.yml, readme.txt, "commits a5bc12b, 3b97d49, 403645d, ffe7d04, ea9794d, 7e5876d, 2afd46e, cf0bc6c"]
 status: active
 ---
 
@@ -44,7 +44,7 @@ The ZIP is written to `dist/cooper-bold-logo-wrangler-<version>.zip`. It respect
 
 > **Pre-approval:** the first submission is reviewed manually. Plugin Check (step 7) and escaping/sanitization in this repo are aligned with common review feedback, but approval is not guaranteed until a human reviewer accepts the plugin.
 >
-> **Status as of 2026-11-10:** **1.3.7** is the last upload (2026-10-29), waiting on the automated recheck; `main` is at **1.5.0**, built and verified but **not uploaded**. 1.5.0 is the React-free frontend ([[0009-react-free-frontend]]), on top of 1.4.0's removal of the old product names, the legacy loader, and every `active_plugins` write ([[0008-remove-old-product-names]]). Nicholas uploads and replies in the existing thread; full timeline in [[wporg-review-thread]].
+> **Status as of 2026-11-23:** **1.5.0** has been live since 2026-11-23 (`v1.5.0` tag → `.github/workflows/deploy.yml`); the 1.5.1 directory-assets swap and the 1.5.2 1.2.x collection fix (plus the `7e5876d` PHPUnit follow-ups) are built and verified on `main` but **not uploaded**. WP.org approval came 2026-10-30; before that the last upload was **1.3.7** (2026-10-29). Nicholas uploads and replies in the existing thread; full timeline in [[wporg-review-thread]].
 
 ## 4. Add GitHub secrets for automated deploy **(you)**
 

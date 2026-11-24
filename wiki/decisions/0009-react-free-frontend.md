@@ -4,15 +4,15 @@ type: decision
 summary: build/view.js uses the logo-soup engine and plain DOM, so pages with a logo strip no longer load WordPress's React; the editor and admin preview keep React.
 status: active
 created: 2026-11-09
-updated: 2026-11-10
-last_verified: 2026-11-10
-sources: [src/view.js, src/shared/mount-soup-dom.js, src/shared/mount-soup-dom.test.js, src/shared/lw-sanitize.js, src/shared/soup-loading.js, tests/COOPBOLO_Assets_Test.php, build/view.asset.php, AGENTS.md, readme.txt, "commit 403645d", "node_modules/@sanity-labs/logo-soup/dist/react/index.js"]
+updated: 2026-11-23
+last_verified: 2026-11-23
+sources: [src/view.js, src/shared/mount-soup-dom.js, src/shared/mount-soup-dom.test.js, src/shared/lw-sanitize.js, src/shared/soup-loading.js, tests/COOPBOLO_Assets_Test.php, build/view.asset.php, AGENTS.md, readme.txt, "commit 403645d", "commits ea9794d, 7e5876d", "node_modules/@sanity-labs/logo-soup/dist/react/index.js"]
 tags: [architecture, performance, react, frontend]
 ---
 
 # The frontend mounts without React
 
-**Status:** active. Built as 1.5.0 on branch `feat/react-free-frontend` and merged to `main` on 2026-11-09 (commit `403645d`); **not uploaded to WP.org yet** (1.3.7 is still the last upload — see [[wporg-review-thread]]). Replaces the frontend half of [[0005-bundle-upstream-react-component]].
+**Status:** active. Built as 1.5.0 on branch `feat/react-free-frontend` and merged to `main` on 2026-11-09 (commit `403645d`); **uploaded to WP.org on 2026-11-23** (`v1.5.0` tag → `.github/workflows/deploy.yml` — see [[wporg-review-thread]]). 1.5.2 (`ea9794d` + `7e5876d`) added a 1.2.x meta fallback and 2 PHPUnit follow-ups; still not uploaded. Replaces the frontend half of [[0005-bundle-upstream-react-component]].
 
 ## Why
 
