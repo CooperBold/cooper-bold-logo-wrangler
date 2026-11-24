@@ -4,12 +4,11 @@ type: overview
 summary: Append-only history of wiki changes. Older entries are not strictly date-ordered.
 status: active
 created: 2026-06-12
-updated: 2026-11-10
-last_verified: 2026-11-10
+updated: 2026-11-24
+last_verified: 2026-11-24
 sources: []
 tags: [meta]
 ---
-
 
 # Log
 
@@ -243,3 +242,7 @@ Nicholas approved a new icon and banner built from the cooperbold.com wordmark a
 ## [2026-11-23] fix | 1.5.2: 1.2.x collections keep their logos
 
 Upgrade test on a local copy of RapidSOS staging data (1.2.11 → 1.5.1) showed both logo sections empty: 1.4.0 had dropped the `_cb_logo_soup_*` fallback because RapidSOS was not going to update ([[0008-remove-old-product-names]]). 1.5.2 makes those keys legacy sources again (migration copy and read fallback); no old names come back. The site still needs one-time content and CSS renames, scripted in `docs/rapidsos-upgrade-from-1.2.sh`; tested path and results in [[rapidsos-site]].
+
+## [2026-11-24] fix | 1.5.3: 1.2.x sites upgrade with a plain plugin swap
+
+`[logo_soup]` and the `cb-logo-soup*` class names come back only on sites whose collections came from 1.2.x (`coopbolo_has_1_2_content`). Updated [[rapidsos-site]].

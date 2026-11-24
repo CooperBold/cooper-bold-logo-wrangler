@@ -32,7 +32,10 @@ final class COOPBOLO_Collections {
 		'_cb_logo_soup_settings',
 	);
 	public const SCHEMA_OPTION  = 'coopbolo_schema_version';
-	public const SCHEMA_VERSION = 1;
+	/** Set when collections from 1.2.x are migrated; turns on COOPBOLO_Plugin's 1.2.x shortcode and class names. */
+	public const HAS_1_2_CONTENT_OPTION = 'coopbolo_has_1_2_content';
+	/** 2 (1.5.3): also records 1.2.x content on sites that already ran version 1. */
+	public const SCHEMA_VERSION = 2;
 
 	/** @var COOPBOLO_Renderer|null */
 	private static ?COOPBOLO_Renderer $renderer = null;
@@ -102,8 +105,34 @@ final class COOPBOLO_Collections {
 				++$result['failed'];
 			}
 		}
+		self::record_1_2_content();
 
 		return $result;
+	}
+
+	/**
+	 * Set HAS_1_2_CONTENT_OPTION if any collection still has 1.2.x meta.
+	 * Checks moved collections too, so sites that updated before 1.5.3 are found.
+	 */
+	private static function record_1_2_content(): void {
+		if ( get_option( self::HAS_1_2_CONTENT_OPTION ) ) {
+			return;
+		}
+		$post_ids = get_posts(
+			array(
+				'post_type'      => self::POST_TYPE,
+				'post_status'    => array_keys( get_post_stati() ),
+				'posts_per_page' => -1,
+				'fields'         => 'ids',
+				'no_found_rows'  => true,
+			)
+		);
+		foreach ( $post_ids as $post_id ) {
+			if ( metadata_exists( 'post', (int) $post_id, self::META_LOGOS_LEGACY_KEYS[1] ) ) {
+				update_option( self::HAS_1_2_CONTENT_OPTION, 1 );
+				return;
+			}
+		}
 	}
 
 	/**
