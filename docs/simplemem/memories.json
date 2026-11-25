@@ -464,5 +464,17 @@
     },
     "namespace": "cooper-bold-logo-wrangler-wp-plugin",
     "timestamp": 1795516266.5911198
+  },
+  {
+    "id": "local_1795602668295",
+    "text": "Wiki update: Review follow-ups for the 1.2.x upgrade path (2026-11-23)",
+    "metadata": {
+      "type": "wiki_log",
+      "date": "2026-11-23",
+      "verb": "update",
+      "source": "maintain_all_simplemem"
+    },
+    "namespace": "cooper-bold-logo-wrangler-wp-plugin",
+    "timestamp": 1795602668.2956579
   }
 ]
