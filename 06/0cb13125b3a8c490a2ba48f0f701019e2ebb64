@@ -1,0 +1,27 @@
+AI_SESSION_MEMORY.md
+  s_9889166accae25::t_53c8f65a0ee5d9 131-139
+wiki/decisions/0007-coopbolo-prefix.md
+  s_9889166accae25::t_3db95764d3a462 7-8,15
+wiki/gotchas.md
+  s_9889166accae25::t_9ac6a0a2e2ec13 7-8,57
+wiki/log.md
+  s_9889166accae25::t_80149944441ef5 263-266
+wiki/sources/wporg-review-thread.md
+  s_9889166accae25::t_73aa74347dba18 7-9,38-39,52,54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "060cb13125b3a8c490a2ba48f0f701019e2ebb64",
+  "prompts": {},
+  "sessions": {
+    "s_9889166accae25": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2f65879d-aee4-4fde-aafb-9267abd5104d",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Nicholas Eymann <nicholas@cooperbold.com>"
+    }
+  }
+}
