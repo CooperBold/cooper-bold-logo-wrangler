@@ -466,7 +466,31 @@
     "timestamp": 1795516266.5911198
   },
   {
-    "id": "local_1795602668295",
+    "id": "local_1795602676393",
+    "text": "Wiki fix: 1.5.3: 1.2.x sites upgrade with a plain plugin swap (2026-11-24)",
+    "metadata": {
+      "type": "wiki_log",
+      "date": "2026-11-24",
+      "verb": "fix",
+      "source": "maintain_all_simplemem"
+    },
+    "namespace": "cooper-bold-logo-wrangler-wp-plugin",
+    "timestamp": 1795602676.393257
+  },
+  {
+    "id": "local_1795602676461",
+    "text": "Wiki fix: 1.5.4: old names move from the plugin to the RapidSOS site (2026-11-24)",
+    "metadata": {
+      "type": "wiki_log",
+      "date": "2026-11-24",
+      "verb": "fix",
+      "source": "maintain_all_simplemem"
+    },
+    "namespace": "cooper-bold-logo-wrangler-wp-plugin",
+    "timestamp": 1795602676.461159
+  },
+  {
+    "id": "local_1795602676528",
     "text": "Wiki update: Review follow-ups for the 1.2.x upgrade path (2026-11-23)",
     "metadata": {
       "type": "wiki_log",
@@ -475,6 +499,6 @@
       "source": "maintain_all_simplemem"
     },
     "namespace": "cooper-bold-logo-wrangler-wp-plugin",
-    "timestamp": 1795602668.2956579
+    "timestamp": 1795602676.52839
   }
 ]
