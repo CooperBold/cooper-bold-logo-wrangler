@@ -128,3 +128,12 @@ Dated log for session context and handoffs.
 - **Decisions:** Keep `cb-lw-*` CSS classes and `data-cb-lw` (theme/Bricks CSS targets them; the prefix rule covers PHP). Don't upload 1.5.0 mid-review: wait for the 1.3.7 recheck. RapidSOS (1.2.11) will not be upgraded.
 - **Risks:** Collections saved only in the Logo Soup era (`_cb_logo_soup_*`) render empty on 1.4.0+ until re-saved. A 3-or-fewer-logo carousel with one broken logo never starts Splide (pre-existing). `save_post` double-unslash drops backslashes in alt text (pre-existing). Not verified on a Bricks site or in the Safari app itself.
 - **Next:** When WP.org replies on 1.3.7, upload 1.5.0 (bump to 1.5.1 if anything changes) and answer any new notes.
+
+## 2026-11-25 — close-out
+
+- **Where:** Logo Wrangler plugin repo · branch `main` · PR none
+- **Done:** Finished a stalled nightly rebase and pushed `44e5873`. Wiki pages that still said 1.5.2 was unreleased now say 1.5.4 is live (WP.org API checked). Added a gotcha for the expected red listing run on release merges.
+- **State:** shipped. 1.5.4 live on WP.org; CI green.
+- **Decisions:** none new.
+- **Risks:** RapidSOS live is still on 1.2.11 (humans-only upgrade, snippet 289223 on staging).
+- **Next:** Add Melanie to readme Contributors once she shares her WP.org username.

@@ -4,8 +4,8 @@ type: overview
 summary: Known traps. Check here after a repeated failure.
 status: active
 created: 2026-10-19
-updated: 2026-11-23
-last_verified: 2026-11-23
+updated: 2026-11-25
+last_verified: 2026-11-25
 sources: [AGENTS.md, AI_SESSION_MEMORY.md, AI_RUNBOOK.md, readme.txt, .wp-env.json, .distignore, .github/workflows/deploy.yml, includes/class-coopbolo-collections.php, includes/class-coopbolo-assets.php, docs/rapidsos-upgrade-from-1.2.sh, src/view.js, src/shared/mount-soup-dom.js, tests/COOPBOLO_Collections_Test.php, "commits a5bc12b, 096d507, 1f7112d, 403645d, ea9794d, 7e5876d, 161fd9d"]
 tags: [gotchas]
 ---
@@ -54,6 +54,7 @@ One line each: the trap, then the fix or the page with details.
 - **wp-env serves the old plugin code for about 2 seconds after `wp plugin install --force`** (opcache `revalidate_freq=2`). Any WP-CLI command also boots WordPress and fires `init`, so it runs pending migrations. Wait or use WP-CLI before reading results (2026-10-22).
 - **`assets/` deploys whole to WordPress.org** (`ASSETS_DIR: assets` in `deploy.yml`, since 2026-11-23). Keep only the directory images there (banner, icon, screenshots); notes and design references live in `docs/wporg-assets/`. Screenshots are real captures from `scripts/wporg-screenshots/`, and the brands in them are fictional.
 - **Listing text and images update without a release** (`update-listing.yml`, on pushes to `main` that touch `readme.txt` or `assets/`). The "Plugin homepage" link and the wp-admin description live in the PHP header, so they need a release. See [[wordpress-org-submission]].
+- **A red "Update WordPress.org listing" run right after a release merge is expected.** The merge to `main` runs before the `v*` tag is released, so the Stable-tag guard stops it (seen on 1.5.3 and 1.5.4, 2026-11-24). The tag deploy ships the same readme and assets, so nothing is lost. See [[wordpress-org-submission]].
 - **README says a GitHub Release also deploys**; `deploy.yml` triggers only on `v*` tag pushes.
 - **wp-env breaks on paths with spaces.** `.wp-env.json` mounts the `cooper-bold-logo-wrangler-wp-plugin` symlink, and `WP_ENV_CORE` must be a local core checkout under `$HOME` (shallow clone fails `index-pack`). See [[wp-env-smoke-test]].
 - **wp-env fails to build on PHP 7.4** (`apt-get install $PHPIZE_DEPS` exits 100). Put `{"phpVersion":"8.2"}` in the gitignored `.wp-env.override.json` (2026-10-21).

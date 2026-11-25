@@ -4,15 +4,15 @@ type: decision
 summary: 1.3.5 renames every plugin-owned global name from cb_lw_/CB_LW_ to coopbolo_/COOPBOLO_ and moves existing collections once on upgrade.
 status: active
 created: 2026-10-22
-updated: 2026-11-23
-last_verified: 2026-11-23
+updated: 2026-11-25
+last_verified: 2026-11-25
 sources: [includes/class-coopbolo-collections.php, tests/COOPBOLO_Bootstrap_Test.php, tests/COOPBOLO_Collections_Test.php, readme.txt, "WP.org manual review email 2026-08-26", "commits a585da6, 40f3028, ea9794d, 7e5876d"]
 tags: [wordpress-org, prefix, migration, cpt]
 ---
 
 # Rename the PHP prefix to coopbolo_ and migrate collections
 
-**Status:** active. Shipped as **1.3.5** and merged to `main` on 2026-10-22 (commits `a585da6` and the `40f3028` hardening gate). 1.3.5 was not uploaded on its own; its prefix fix reached WP.org in **1.3.7** (uploaded 2026-10-29), **1.5.0** (uploaded 2026-11-23, see [[wporg-review-thread]]) carried the React-free frontend ([[0009-react-free-frontend]]), and `main` is now at **1.5.2** (`ea9794d` + `7e5876d`) — still not uploaded.
+**Status:** active. Shipped as **1.3.5** and merged to `main` on 2026-10-22 (commits `a585da6` and the `40f3028` hardening gate). 1.3.5 was not uploaded on its own; its prefix fix reached WP.org in **1.3.7** (uploaded 2026-10-29), **1.5.0** (uploaded 2026-11-23, see [[wporg-review-thread]]) carried the React-free frontend ([[0009-react-free-frontend]]). 1.5.1–1.5.4 followed through the `deploy.yml` tag workflow; **1.5.4** is live on WP.org (checked 2026-11-25).
 
 ## Why
 

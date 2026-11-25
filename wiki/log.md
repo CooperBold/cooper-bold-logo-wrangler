@@ -260,3 +260,7 @@ No new decisions. The merge fast-forwarded `main`; `git status` is clean.
 ## [2026-11-24] fix | 1.5.4: old names move from the plugin to the RapidSOS site
 
 1.5.3's `[logo_soup]` and `cb-logo-soup*` support is removed; RapidSOS has the same code as a site snippet. Updated [[rapidsos-site]] and [[0008-remove-old-product-names]].
+
+## [2026-11-25] session | Checkout synced; wiki brought up to 1.5.4
+
+Finished a stalled nightly rebase on this Mac and pushed (`44e5873`). [[0007-coopbolo-prefix]] and [[wporg-review-thread]] no longer say 1.5.2 is unreleased; 1.5.4 is live per the WP.org API. Added a gotcha: the listing workflow fails on release merges because the tag isn't out yet, which is harmless.

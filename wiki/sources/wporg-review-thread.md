@@ -4,9 +4,9 @@ type: source
 summary: Digest of the WordPress.org Plugin Directory review emails — what reviewers asked for, what we changed, and where it stands.
 status: active
 created: 2026-10-19
-updated: 2026-11-23
-last_verified: 2026-11-23
-sources: ["Cooper Bold inbox thread 'Review in Progress: Logo Soup by Cooper Bold' (read with cooper-mail, 2026-10-19)", "Aug 26 review email pasted by Nicholas 2026-10-22", "commits 096d507, 1f7112d, 0144b59, 9501c8d, a5bc12b, 403645d, ea9794d, 7e5876d, 161fd9d", AI_SESSION_MEMORY.md]
+updated: 2026-11-25
+last_verified: 2026-11-25
+sources: ["Cooper Bold inbox thread 'Review in Progress: Logo Soup by Cooper Bold' (read with cooper-mail, 2026-10-19)", "Aug 26 review email pasted by Nicholas 2026-10-22", "commits 096d507, 1f7112d, 0144b59, 9501c8d, a5bc12b, 403645d, ea9794d, 7e5876d, 161fd9d, 90e1c9d, 304983d", "WP.org plugins API 2026-11-25", AI_SESSION_MEMORY.md]
 tags: [wordpress-org, review, source]
 ---
 
@@ -35,7 +35,8 @@ One email thread from the WordPress.org Plugins Team covers the whole submission
 | 2026-10-30 | Agent | **1.4.0** merged to `main` (commit `a5bc12b`): the old product names, the legacy loader, and every `active_plugins` write are removed ([[0008-remove-old-product-names]]). Not uploaded yet — it answers the original "Logo Soup" name complaint and the Aug 6 flag outright. |
 | 2026-11-09 | Agent | **1.5.0** merged to `main` (commit `403645d`): the frontend mounts with the logo-soup engine and plain DOM, so public pages with a logo strip stop loading WordPress's React (~53 KB gzipped) ([[0009-react-free-frontend]]). DOM compared against the 1.4.0 React build in wp-env: identical in seven cases. Plugin Check on the 1.5.0 ZIP: no errors. |
 | 2026-11-23 | Nicholas | Uploaded **1.5.0** via `v1.5.0` tag → `.github/workflows/deploy.yml`. Status moved to **live**. The Aug 26 prefix issue, the Aug 6 "Logo Soup" / `active_plugins` flags, and the Aug 26 out-of-date libraries are now all answered in the live code. |
-| 2026-11-23 | Agent | **1.5.2** merged to `main` (`ea9794d` + `7e5876d`): `_cb_logo_soup_*` read fallback restored for collections saved under 1.2.x ([[rapidsos-site]]), plus 2 PHPUnit follow-ups for non-array meta fallback and empty-save behavior (now **68 tests on 1.5.2**). Not uploaded. |
+| 2026-11-23 | Agent | **1.5.2** merged to `main` (`ea9794d` + `7e5876d`): `_cb_logo_soup_*` read fallback restored for collections saved under 1.2.x ([[rapidsos-site]]), plus 2 PHPUnit follow-ups for non-array meta fallback and empty-save behavior (now **68 tests on 1.5.2**). Released 2026-11-23 with the `v1.5.2` tag. |
+| 2026-11-24 | Agent (RapidSOS session) | **1.5.3** added `[logo_soup]` and `cb-logo-soup*` class twins for sites with 1.2.x content; **1.5.4** removed them again and moved that code into a RapidSOS site snippet ([[rapidsos-site]], [[0008-remove-old-product-names]]). Both released by tag; **1.5.4** live on WP.org. |
 
 ## What it changed in the repo
 
@@ -48,9 +49,9 @@ One email thread from the WordPress.org Plugins Team covers the whole submission
 
 ## Notes for the next upload
 
-- Reply **in the same thread** and upload through the "Add your plugin" page. Reviewers expect every listed issue fixed and similar cases searched for.
+- During review, replies went **in the same thread**. Reviewers expect every listed issue fixed and similar cases searched for.
 - The reviewer account is the WP.org user `nicholaseymann`, which matches `readme.txt` Contributors. The docs saying contributor `cooperbold` are stale.
-- The next upload should be **1.5.2**, which adds the `_cb_logo_soup_*` read fallback for sites still on 1.2.x (`ea9794d`, [[rapidsos-site]]) and 2 PHPUnit follow-ups from `7e5876d`. 1.5.1 swapped the directory assets for Cooper Bold branding; both are built and verified but not uploaded. The 1.4.0 upgrade notice tells users to move content off `[logo_soup]` and `[balanced_logos]` to `[logo_wrangler]`; 1.5.0's notice says the markup and CSS classes are unchanged.
+- Releases now go through a `v*` tag and `deploy.yml`, not the "Add your plugin" page. **1.5.4** is live (WP.org API, 2026-11-25). The 1.4.0 upgrade notice tells users to move content off `[logo_soup]` and `[balanced_logos]` to `[logo_wrangler]`; 1.5.0's notice says the markup and CSS classes are unchanged.
 - The auto-scroll "out of date" finding is still a false positive (0.5.3 is the latest npm release); explain it in the reply rather than bumping. See [[0001-pin-splide-extension-auto-scroll]].
 
 ## Related
