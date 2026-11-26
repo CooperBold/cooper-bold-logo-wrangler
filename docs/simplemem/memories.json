@@ -500,5 +500,29 @@
     },
     "namespace": "cooper-bold-logo-wrangler-wp-plugin",
     "timestamp": 1795602676.52839
+  },
+  {
+    "id": "local_1795689067884",
+    "text": "AI Session: 2026-11-25 \u2014 close-out\n\n- **Where:** Logo Wrangler plugin repo \u00b7 branch `main` \u00b7 PR none\n- **Done:** Finished a stalled nightly rebase and pushed `44e5873`. Wiki pages that still said 1.5.2 was unreleased now say 1.5.4 is live (WP.org API checked). Added a gotcha for the expected red listing run on release merges.\n- **State:** shipped. 1.5.4 live on WP.org; CI green.\n- **Decisions:** none new.\n- **Risks:** RapidSOS live is still on 1.2.11 (humans-only upgrade, snippet 289223 on staging).\n- **Next:** Add Melanie to readme Contributors once she shares her WP.org username.",
+    "metadata": {
+      "source": "ai_session_memory",
+      "date": "2026-11-25",
+      "session_title": "2026-11-25 \u2014 close-out",
+      "imported_by": "maintain_all_simplemem"
+    },
+    "namespace": "cooper-bold-logo-wrangler-wp-plugin",
+    "timestamp": 1795689067.884553
+  },
+  {
+    "id": "local_1795689067942",
+    "text": "Wiki session: Checkout synced; wiki brought up to 1.5.4 (2026-11-25)",
+    "metadata": {
+      "type": "wiki_log",
+      "date": "2026-11-25",
+      "verb": "session",
+      "source": "maintain_all_simplemem"
+    },
+    "namespace": "cooper-bold-logo-wrangler-wp-plugin",
+    "timestamp": 1795689067.9422069
   }
 ]
